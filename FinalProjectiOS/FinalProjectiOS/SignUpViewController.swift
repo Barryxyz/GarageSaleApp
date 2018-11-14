@@ -10,9 +10,15 @@ import UIKit
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var firstName: UITextField!
+    @IBOutlet weak var lastName: UITextField!
+    @IBOutlet var email: UIView!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet var cPassword: UIView!
+    @IBOutlet var phoneNumber: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
