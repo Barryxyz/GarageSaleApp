@@ -19,8 +19,8 @@ class PasswordResetViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func cancelAction(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+    @IBAction func cancelActionButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func resetPasswordAction(_ sender: Any) {

@@ -53,11 +53,12 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     //on Cancel, just go back to landing screen
+
     @IBAction func cancelAction(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func signupButtonAction(_ sender: Any) {
+    @IBAction func signupAction(_ sender: Any) {
         if (password.text != cPassword.text) {
             let notMatchingAlert = UIAlertController(title: "Passwords do not match", message: "Please re-enter password", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)

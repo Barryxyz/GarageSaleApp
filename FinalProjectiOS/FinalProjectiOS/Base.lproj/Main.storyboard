@@ -93,7 +93,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
-                                    <segue destination="uLv-3U-NIS" kind="show" id="fYE-Q4-Rid"/>
+                                    <segue destination="uLv-3U-NIS" kind="presentation" id="fYE-Q4-Rid"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tTb-JB-8aU">
@@ -101,7 +101,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Forgot Password?"/>
                                 <connections>
-                                    <segue destination="TH9-WI-wxj" kind="show" id="kzc-GX-buD"/>
+                                    <segue destination="TH9-WI-wxj" kind="presentation" id="kzc-GX-buD"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pq8-0U-XEe">
@@ -125,7 +125,7 @@
             </objects>
             <point key="canvasLocation" x="-130.40000000000001" y="89.505247376311857"/>
         </scene>
-        <!--Forgot Password-->
+        <!--Password Reset View Controller-->
         <scene sceneID="tCQ-rS-V6D">
             <objects>
                 <viewController id="TH9-WI-wxj" customClass="PasswordResetViewController" customModule="FinalProjectiOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -176,17 +176,23 @@
                                     <action selector="resetPasswordAction:" destination="TH9-WI-wxj" eventType="touchUpInside" id="sPT-o3-NHa"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gbr-y3-L7n">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Forgot Password" id="623-wz-Sb5">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="02U-xs-ygs">
+                                            <connections>
+                                                <action selector="cancelActionButton:" destination="TH9-WI-wxj" id="C8q-ql-nzg"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="rU9-AK-Idz"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Forgot Password" id="soh-0x-6ft">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="cKn-L8-1YD">
-                            <connections>
-                                <action selector="cancelAction:" destination="TH9-WI-wxj" id="iKw-im-pmJ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="emailTextField" destination="3Hx-yg-oeN" id="naU-h0-Ome"/>
                     </connections>
@@ -217,7 +223,7 @@
             </objects>
             <point key="canvasLocation" x="2744.8000000000002" y="-785.75712143928047"/>
         </scene>
-        <!--Sign Up-->
+        <!--Sign Up View Controller-->
         <scene sceneID="aVh-o9-ltw">
             <objects>
                 <viewController id="uLv-3U-NIS" customClass="SignUpViewController" customModule="FinalProjectiOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -323,22 +329,33 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DaO-iP-4jz">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Sign Up" id="oVi-xl-JTg">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="KLv-I5-Tl2">
+                                            <connections>
+                                                <action selector="cancelAction:" destination="uLv-3U-NIS" id="NbP-91-UCL"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="uGF-BG-9FD">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RsN-As-UIG">
+                                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Sign Up"/>
+                                                <connections>
+                                                    <action selector="signupAction:" destination="uLv-3U-NIS" eventType="touchUpInside" id="S5B-bc-vZ9"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ggh-sR-oat"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Sign Up" id="6on-6Q-2po">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="PyZ-PV-Lvx">
-                            <connections>
-                                <action selector="cancelAction:" destination="uLv-3U-NIS" id="62K-Ub-IgM"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Sign Up" id="Ucs-wO-yWu">
-                            <connections>
-                                <action selector="signupButtonAction:" destination="uLv-3U-NIS" id="VS9-wS-uID"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="ContactMethod" destination="wWs-Iy-cUa" id="HLt-nj-95I"/>
                         <outlet property="cPassword" destination="VLd-ZQ-7wH" id="cJ2-xT-esu"/>
