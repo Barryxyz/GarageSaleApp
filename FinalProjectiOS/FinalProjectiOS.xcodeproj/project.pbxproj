@@ -15,6 +15,7 @@
 		26772E1E219B9FAF00F5EAF8 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26772E1D219B9FAF00F5EAF8 /* SignUpViewController.swift */; };
 		26772E22219BA1FF00F5EAF8 /* LandingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26772E21219BA1FF00F5EAF8 /* LandingScreenViewController.swift */; };
 		26772E24219BC1D000F5EAF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26772E23219BC1D000F5EAF8 /* GoogleService-Info.plist */; };
+		26A6AEAA219E0F82009157D6 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6AEA9219E0F82009157D6 /* PasswordResetViewController.swift */; };
 		26B38804219DE371000F176F /* tabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B38803219DE371000F176F /* tabBarController.swift */; };
 		FE21A1EFF415C240A0D9A7C3 /* Pods_FinalProjectiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337B2501691A89701376615E /* Pods_FinalProjectiOS.framework */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,7 @@
 		26772E1D219B9FAF00F5EAF8 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		26772E21219BA1FF00F5EAF8 /* LandingScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingScreenViewController.swift; sourceTree = "<group>"; };
 		26772E23219BC1D000F5EAF8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		26A6AEA9219E0F82009157D6 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		26B38803219DE371000F176F /* tabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabBarController.swift; sourceTree = "<group>"; };
 		337B2501691A89701376615E /* Pods_FinalProjectiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinalProjectiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB4CCA8A6AD509FA17DDBA17 /* Pods-FinalProjectiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProjectiOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProjectiOS/Pods-FinalProjectiOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				26772E1D219B9FAF00F5EAF8 /* SignUpViewController.swift */,
 				26772E21219BA1FF00F5EAF8 /* LandingScreenViewController.swift */,
 				26772E0F219B96E100F5EAF8 /* Main.storyboard */,
+				26A6AEA9219E0F82009157D6 /* PasswordResetViewController.swift */,
 				2600B27A219DFCD000B6A55B /* MyProfileViewController.swift */,
 				26B38803219DE371000F176F /* tabBarController.swift */,
 				26772E12219B96E100F5EAF8 /* Assets.xcassets */,
@@ -228,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2600B27B219DFCD000B6A55B /* MyProfileViewController.swift in Sources */,
+				26A6AEAA219E0F82009157D6 /* PasswordResetViewController.swift in Sources */,
 				26772E22219BA1FF00F5EAF8 /* LandingScreenViewController.swift in Sources */,
 				26B38804219DE371000F176F /* tabBarController.swift in Sources */,
 				26772E1E219B9FAF00F5EAF8 /* SignUpViewController.swift in Sources */,

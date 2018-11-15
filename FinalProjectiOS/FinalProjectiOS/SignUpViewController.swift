@@ -11,7 +11,7 @@ import FirebaseAuth
 
 class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    //manages the pickerView for ContactMehthod ("best contact method") text field
+    //manages the pickerView for ContactMethod ("best contact method") text field
     
     let contactPickerData = [String](arrayLiteral: "Phone Call", "Email", "Text Message")
     
