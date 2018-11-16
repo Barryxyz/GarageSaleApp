@@ -32,6 +32,7 @@ class LandingScreenViewController: UIViewController {
             Auth.auth().signIn(withEmail: UsernameTextField.text!, password: PasswordTextField.text!){ (user,error) in
                 if (error == nil){
                     //programmatically make a connection (segue) to the tab bar home)
+                    print(Auth.auth().currentUser!.uid)
                     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let tabBarHome = storyBoard.instantiateViewController(withIdentifier: "tabBarHome")
                     self.present(tabBarHome, animated: true, completion: nil)

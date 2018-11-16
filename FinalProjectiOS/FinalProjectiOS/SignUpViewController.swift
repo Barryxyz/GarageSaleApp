@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -31,7 +32,8 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         ContactMethod.text = contactPickerData[row]
     }
     
-
+    var ref:DatabaseReference!
+    
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var email: UITextField!
@@ -47,8 +49,7 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let contactPicker = UIPickerView()
         ContactMethod.inputView = contactPicker
         contactPicker.delegate=self
-
-        
+        ref = Database.database().reference()
         // Do any additional setup after loading the view.
     }
     
@@ -75,6 +76,20 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             Auth.auth().createUser(withEmail: email.text!, password: password.text!) { (user, error) in
                 //if there is no error
                 if (error == nil){
+                    //WRITE DATA TO FIREBASE DATABASE HERE
+                    print(self.email.text!)
+                    print(self.firstName.text!)
+                    //use unique userID for user this will be assigned during login and used for user in future
+                    print(Auth.auth().currentUser!.uid)
+                    let userData = [ "firstName": self.firstName.text!,
+                                     "lastName": self.lastName.text!,
+                                     "email": self.email.text!,
+                                     "password": self.password.text!,
+                                     "contactMethod": self.ContactMethod.text!,
+                                     "phoneNumber": self.phoneNumber.text!
+                    ]
+                    self.ref?.child("Users").child(Auth.auth().currentUser!.uid).setValue(userData)
+                    
                     //programmatically make a connection (segue) to the tab bar home)
                     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let tabBarHome = storyBoard.instantiateViewController(withIdentifier: "tabBarHome")
