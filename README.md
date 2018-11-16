@@ -1,6 +1,8 @@
 # final-project-final-ios-chinyeung
 
-Special Instructions to run mobile application
+Barry Chin (bxc2gn) and Christopher Yeung (cy4bv)
+
+Special Instructions to Run Mobile Application
 
 NOTE: the formal xCode project for our application is within the directory "FinalProjectiOS".  From the git clone of this project, please cd into that directory in order to run the application.  
 
