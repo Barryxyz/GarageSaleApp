@@ -204,7 +204,7 @@
         <!--Item Map-->
         <scene sceneID="K9m-rG-2pr">
             <objects>
-                <viewController id="Dc6-mE-2Vq" sceneMemberID="viewController">
+                <viewController id="Dc6-mE-2Vq" customClass="mapViewController" customModule="FinalProjectiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="obo-pz-hoV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -218,6 +218,9 @@
                         <viewLayoutGuide key="safeArea" id="nud-fs-0br"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item Map" image="icons8-waypoint-map-30" id="W4w-WD-5QD"/>
+                    <connections>
+                        <outlet property="mapView" destination="QwQ-nd-Dky" id="bUb-cy-DxL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pno-t3-PKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -571,9 +574,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icons8-add-new-30" width="22.5" height="22.5"/>
-        <image name="icons8-menu-30" width="22.5" height="22.5"/>
-        <image name="icons8-user-30" width="22.5" height="22.5"/>
-        <image name="icons8-waypoint-map-30" width="22.5" height="22.5"/>
+        <image name="icons8-add-new-30" width="30" height="30"/>
+        <image name="icons8-menu-30" width="30" height="30"/>
+        <image name="icons8-user-30" width="30" height="30"/>
+        <image name="icons8-waypoint-map-30" width="30" height="30"/>
     </resources>
 </document>
