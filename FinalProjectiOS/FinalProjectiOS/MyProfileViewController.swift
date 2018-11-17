@@ -8,9 +8,13 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class MyProfileViewController: UIViewController {
     
+    
+    var ref:DatabaseReference!
+
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var contactMethodTextField: UITextField!
@@ -21,7 +25,7 @@ class MyProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        ref = Database.database().reference()
         // Do any additional setup after loading the view.
     }
     
