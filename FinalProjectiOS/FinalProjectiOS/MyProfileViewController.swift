@@ -82,7 +82,7 @@ class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             self.passwordTextField.text = password as? String
             
             //dismissing the alert after retrieving data from firebase
-            self.dismiss(animated: false, completion: nil)
+            loadingAlert.dismiss(animated: false, completion: nil)
         })
 
         // Do any additional setup after loading the view.
