@@ -79,12 +79,12 @@
 				26772E0F219B96E100F5EAF8 /* Main.storyboard */,
 				26A6AEA9219E0F82009157D6 /* PasswordResetViewController.swift */,
 				2600B27A219DFCD000B6A55B /* MyProfileViewController.swift */,
+				9F2463D1219FB844002A180F /* mapViewController.swift */,
 				26B38803219DE371000F176F /* tabBarController.swift */,
 				26772E12219B96E100F5EAF8 /* Assets.xcassets */,
 				26772E14219B96E100F5EAF8 /* LaunchScreen.storyboard */,
 				9F2463CD219FB6A1002A180F /* GoogleService-Info.plist */,
 				26772E17219B96E100F5EAF8 /* Info.plist */,
-				9F2463D1219FB844002A180F /* mapViewController.swift */,
 			);
 			path = FinalProjectiOS;
 			sourceTree = "<group>";

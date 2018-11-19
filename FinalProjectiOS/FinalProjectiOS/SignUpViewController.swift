@@ -76,7 +76,6 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             Auth.auth().createUser(withEmail: email.text!, password: password.text!) { (user, error) in
                 //if there is no error
                 if (error == nil){
-                    //WRITE DATA TO FIREBASE DATABASE HERE
                     print(self.email.text!)
                     print(self.firstName.text!)
                     //use unique userID for user this will be assigned during login and used for user in future
