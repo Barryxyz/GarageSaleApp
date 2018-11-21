@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2600B27B219DFCD000B6A55B /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2600B27A219DFCD000B6A55B /* MyProfileViewController.swift */; };
+		26218C1521A3A47300D6FBC6 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26218C1421A3A47300D6FBC6 /* AddItemViewController.swift */; };
 		26772E0C219B96E100F5EAF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26772E0B219B96E100F5EAF8 /* AppDelegate.swift */; };
 		26772E11219B96E100F5EAF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26772E0F219B96E100F5EAF8 /* Main.storyboard */; };
 		26772E13219B96E100F5EAF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26772E12219B96E100F5EAF8 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		2506D2A1E15411F60EFB0AC2 /* Pods-FinalProjectiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProjectiOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProjectiOS/Pods-FinalProjectiOS.release.xcconfig"; sourceTree = "<group>"; };
 		2600B27A219DFCD000B6A55B /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
+		26218C1421A3A47300D6FBC6 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		26772E08219B96E100F5EAF8 /* FinalProjectiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProjectiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26772E0B219B96E100F5EAF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26772E10219B96E100F5EAF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				26772E0B219B96E100F5EAF8 /* AppDelegate.swift */,
+				26218C1421A3A47300D6FBC6 /* AddItemViewController.swift */,
 				26772E1D219B9FAF00F5EAF8 /* SignUpViewController.swift */,
 				26772E21219BA1FF00F5EAF8 /* LandingScreenViewController.swift */,
 				26772E0F219B96E100F5EAF8 /* Main.storyboard */,
@@ -238,6 +241,7 @@
 				26772E22219BA1FF00F5EAF8 /* LandingScreenViewController.swift in Sources */,
 				26B38804219DE371000F176F /* tabBarController.swift in Sources */,
 				9F2463D2219FB844002A180F /* mapViewController.swift in Sources */,
+				26218C1521A3A47300D6FBC6 /* AddItemViewController.swift in Sources */,
 				26772E1E219B9FAF00F5EAF8 /* SignUpViewController.swift in Sources */,
 				26772E0C219B96E100F5EAF8 /* AppDelegate.swift in Sources */,
 			);
