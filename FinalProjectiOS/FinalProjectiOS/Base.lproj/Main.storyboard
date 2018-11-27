@@ -562,7 +562,6 @@
         <!--Sell an Item-->
         <scene sceneID="Fn7-oH-Uto">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kdy-lv-Jdp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController navigationBarHidden="YES" id="VJw-Xh-A4m" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Sell an Item" image="icons8-add-new-30" id="Ghi-Fe-hTz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZJI-oO-nEL">
@@ -575,13 +574,13 @@
                         <segue destination="Jav-Am-JcN" kind="relationship" relationship="rootViewController" id="DBk-Vp-JlA"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kdy-lv-Jdp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1646" y="1003"/>
         </scene>
         <!--Sell an Item-->
         <scene sceneID="bj2-Er-QYq">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eAY-9f-BqE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Jav-Am-JcN" customClass="AddItemViewController" customModule="FinalProjectiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yX1-5B-SK4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -676,13 +675,13 @@
                         <outlet property="priceTextField" destination="BRl-As-euZ" id="msU-xY-bbu"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eAY-9f-BqE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2360.8000000000002" y="1002.5487256371815"/>
         </scene>
         <!--Sell an Item-->
         <scene sceneID="Nyj-fN-CEP">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MCq-8w-y1m" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="itemImageVC" id="IE4-Ge-GWX" customClass="AddItemViewControllerImages" customModule="FinalProjectiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZiU-Xu-CIz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -710,6 +709,33 @@
                                 <rect key="frame" x="-2" y="571" width="379" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KvI-oQ-dej">
+                                <rect key="frame" x="64" y="149" width="246" height="223"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tBp-JF-1QK">
+                                <rect key="frame" x="145" y="398" width="84" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Use Camera"/>
+                                <connections>
+                                    <action selector="useCamera:" destination="IE4-Ge-GWX" eventType="touchUpInside" id="ezm-9C-SMK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leX-nb-ljV">
+                                <rect key="frame" x="125" y="436" width="125" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Use Image Library"/>
+                                <connections>
+                                    <action selector="useImageLibrary:" destination="IE4-Ge-GWX" eventType="touchUpInside" id="7lf-iw-K4F"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item image to be displayed will be shown below:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qEC-OP-hkw">
+                                <rect key="frame" x="16" y="83" width="388" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Iyj-F0-Em3"/>
@@ -718,8 +744,10 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imageProgressView" destination="BDz-Ji-TdB" id="bxJ-Wn-Ial"/>
+                        <outlet property="imageView" destination="KvI-oQ-dej" id="vnh-h9-Lla"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MCq-8w-y1m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3144.8000000000002" y="1002.5487256371815"/>
         </scene>

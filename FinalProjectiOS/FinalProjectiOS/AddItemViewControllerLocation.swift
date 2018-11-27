@@ -165,8 +165,7 @@ class AddItemViewControllerLocation: UIViewController, CLLocationManagerDelegate
         locationProgressView.layer.cornerRadius = 7
         locationProgressView.clipsToBounds = true
         locationProgressView.transform = locationProgressView.transform.scaledBy(x: 1.0, y: 4.0)
-        locationProgressView.progress = 0.6666666666666666666
-
+        locationProgressView.progress = 1.0
 
         // Do any additional setup after loading the view.
     }
@@ -178,7 +177,6 @@ class AddItemViewControllerLocation: UIViewController, CLLocationManagerDelegate
     }
     
     @IBAction func postItemAction(_ sender: Any) {
-        locationProgressView.progress = 1.0
     }
     /*
     // MARK: - Navigation
