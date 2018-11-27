@@ -8,8 +8,12 @@
 
 import UIKit
 import MapKit
+import GoogleMaps
+import GooglePlaces
 
 class mapViewController: UIViewController {
+    let GoogleSearchPlaceApiKey = "AIzaSyCEq3onTjJzDzmjFUzMGBpHijc8V_g5olo"
+    let api = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=bar&key=" + "AIzaSyCEq3onTjJzDzmjFUzMGBpHijc8V_g5olo"
     private let locationManager = CLLocationManager()
     private var currentCoordinate: CLLocationCoordinate2D?
     @IBOutlet weak var mapView: MKMapView!
@@ -17,6 +21,7 @@ class mapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLocationServices()
+        
 
         // Do any additional setup after loading the view.
     }
