@@ -202,6 +202,22 @@
             <point key="canvasLocation" x="712.79999999999995" y="-591.45427286356824"/>
         </scene>
         <!--Item Map-->
+        <scene sceneID="Ki3-Kq-jut">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="1Er-Oh-Sxi" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item Map" image="icons8-waypoint-map-30" id="jjX-va-5yw"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UfF-oh-djg">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Dc6-mE-2Vq" kind="relationship" relationship="rootViewController" id="5IF-CI-DFG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vdo-gs-zE2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3519" y="-1094"/>
+        </scene>
+        <!--Item Map-->
         <scene sceneID="K9m-rG-2pr">
             <objects>
                 <viewController id="Dc6-mE-2Vq" customClass="mapViewController" customModule="FinalProjectiOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -209,24 +225,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pde-af-IUb">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="N1t-ud-K5A">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="1pc-UL-6ex">
+                                            <connections>
+                                                <action selector="searchNext:" destination="Dc6-mE-2Vq" id="Apn-sv-fLg"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QwQ-nd-Dky">
-                                <rect key="frame" x="0.0" y="81" width="375" height="537"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="emR-o0-KNF">
-                                <rect key="frame" x="0.0" y="25" width="375" height="56"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <scopeButtonTitles>
-                                    <string>Title</string>
-                                    <string>Title</string>
-                                </scopeButtonTitles>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="nud-fs-0br"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item Map" image="icons8-waypoint-map-30" id="W4w-WD-5QD"/>
+                    <navigationItem key="navigationItem" id="ylP-cV-2Ty"/>
                     <connections>
                         <outlet property="mapView" destination="QwQ-nd-Dky" id="bUb-cy-DxL"/>
                         <outlet property="searchDisplayController" destination="TRt-e3-6aS" id="TCj-3u-dL6"/>
@@ -242,7 +263,62 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2744.8000000000002" y="-785.75712143928047"/>
+            <point key="canvasLocation" x="4301.6000000000004" y="-1094.3028485757122"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="Ttp-KP-MI3">
+            <objects>
+                <viewController storyboardIdentifier="searchPlacesVC" id="Mtt-kI-ydd" customClass="SearchViewController" customModule="FinalProjectiOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="A3t-9n-7cj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uxl-cS-Qa4">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="rDC-VG-rgu">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="cPa-XK-r5R">
+                                            <connections>
+                                                <action selector="searchBack:" destination="Mtt-kI-ydd" id="kiu-A2-8rE"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lle-2Q-QTt">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dLn-9S-Hty">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="wmP-ON-OkV">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wmP-ON-OkV" id="9fy-n7-Yys">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="pBd-69-9tI"/>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="Lle-2Q-QTt" id="fTA-AQ-kPb"/>
+                        <outlet property="table" destination="dLn-9S-Hty" id="cp6-Rl-Laq"/>
+                        <outlet property="tableView" destination="dLn-9S-Hty" id="oT6-tt-gky"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XtZ-Ks-RMb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5128.8000000000002" y="-1094.3028485757122"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="aVh-o9-ltw">
@@ -568,9 +644,9 @@
                     </tabBar>
                     <connections>
                         <segue destination="6gk-aM-zQ4" kind="relationship" relationship="viewControllers" id="9s3-6J-4no"/>
-                        <segue destination="Dc6-mE-2Vq" kind="relationship" relationship="viewControllers" id="sK7-KJ-eNw"/>
                         <segue destination="VJw-Xh-A4m" kind="relationship" relationship="viewControllers" id="jIv-BP-kkM"/>
                         <segue destination="Av4-gW-Ab1" kind="relationship" relationship="viewControllers" id="sZo-3U-1hM"/>
+                        <segue destination="1Er-Oh-Sxi" kind="relationship" relationship="viewControllers" id="tOr-8A-DnZ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HsL-Ba-lCZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

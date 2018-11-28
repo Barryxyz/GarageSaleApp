@@ -60,7 +60,12 @@ class mapViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    @IBAction func searchNext(_ sender: Any) {
+        let itemLocationVC = UIStoryboard(name:"Main", bundle: nil).instantiateViewController(withIdentifier: "searchPlacesVC")
+        self.navigationController?.pushViewController(itemLocationVC, animated: true)
+    }
+    
 }
 extension mapViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -80,3 +85,4 @@ extension mapViewController: CLLocationManagerDelegate{
         }
     }
 }
+
