@@ -25,6 +25,19 @@ class mapViewController: UIViewController {
         acController.delegate = self as GMSAutocompleteViewControllerDelegate
         present(acController, animated: true, completion: nil)
     }
+    @IBAction func moveCoordinate(_ sender: Any) {
+        let address = textField.text!
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(address) {
+            placemarks, error in
+            let placemark = placemarks?.first
+            let lat = placemark?.location?.coordinate.latitude
+            let lon = placemark?.location?.coordinate.longitude
+            let location = placemarks?.first?.location?.coordinate
+            print("Lat: \(String(describing: lat)), Lon: \(String(describing: lon))")
+            self.zoomToLatestLocation(with: location!)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLocationServices()
