@@ -12,12 +12,19 @@ import GoogleMaps
 import GooglePlaces
 
 class mapViewController: UIViewController {
-    let GoogleSearchPlaceApiKey = "AIzaSyCEq3onTjJzDzmjFUzMGBpHijc8V_g5olo"
+    let GoogleSearchPlaceApiKey = "AIzaSyCTytwuD4NgY4zE8dXXRr8N5cR_3ge28cM"
     let api = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=bar&key=" + "AIzaSyCEq3onTjJzDzmjFUzMGBpHijc8V_g5olo"
     private let locationManager = CLLocationManager()
     private var currentCoordinate: CLLocationCoordinate2D?
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var textField: UITextField!
     
+    @IBAction func textFieldTapped(_ sender: Any) {
+        textField.resignFirstResponder()
+        let acController = GMSAutocompleteViewController()
+        acController.delegate = self as GMSAutocompleteViewControllerDelegate
+        present(acController, animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLocationServices()
@@ -61,10 +68,6 @@ class mapViewController: UIViewController {
     }
     */
     
-    @IBAction func searchNext(_ sender: Any) {
-        let itemLocationVC = UIStoryboard(name:"Main", bundle: nil).instantiateViewController(withIdentifier: "searchPlacesVC")
-        self.navigationController?.pushViewController(itemLocationVC, animated: true)
-    }
     
 }
 extension mapViewController: CLLocationManagerDelegate{
@@ -85,4 +88,20 @@ extension mapViewController: CLLocationManagerDelegate{
         }
     }
 }
-
+extension mapViewController: GMSAutocompleteViewControllerDelegate {
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        // Get the place name from 'GMSAutocompleteViewController'
+        // Then display the name in textField
+        textField.text = place.name
+        // Dismiss the GMSAutocompleteViewController when something is selected
+        dismiss(animated: true, completion: nil)
+    }
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        // Handle the error
+        print("Error: ", error.localizedDescription)
+    }
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        // Dismiss when the user canceled the action
+        dismiss(animated: true, completion: nil)
+    }
+}
