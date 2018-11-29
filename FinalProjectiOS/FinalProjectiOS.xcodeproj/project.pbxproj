@@ -150,6 +150,7 @@
 				TargetAttributes = {
 					26772E07219B96E000F5EAF8 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -423,6 +424,7 @@
 			baseConfigurationReference = CB4CCA8A6AD509FA17DDBA17 /* Pods-FinalProjectiOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S62ANKG3CL;
 				INFOPLIST_FILE = FinalProjectiOS/Info.plist;
@@ -432,6 +434,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Chris.Yeung2468.FinalProjectiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -442,6 +445,7 @@
 			baseConfigurationReference = 2506D2A1E15411F60EFB0AC2 /* Pods-FinalProjectiOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S62ANKG3CL;
 				INFOPLIST_FILE = FinalProjectiOS/Info.plist;

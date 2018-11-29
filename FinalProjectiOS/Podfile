@@ -16,5 +16,6 @@ target 'FinalProjectiOS' do
   #pods for Google Maps WEB SERVICES API
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'GooglePlacePicker'
 
 end
