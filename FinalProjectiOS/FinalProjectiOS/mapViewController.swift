@@ -27,6 +27,15 @@ class mapViewController: UIViewController {
     }
     @IBAction func moveCoordinate(_ sender: Any) {
         let address = textField.text!
+        if(address == ""){
+            let alertController = UIAlertController(title: "Error", message:
+                "No address was selected", preferredStyle: UIAlertController.Style.alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default,handler: nil))
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else
+        {
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) {
             placemarks, error in
@@ -35,8 +44,21 @@ class mapViewController: UIViewController {
             let lon = placemark?.location?.coordinate.longitude
             let location = placemarks?.first?.location?.coordinate
             print("Lat: \(String(describing: lat)), Lon: \(String(describing: lon))")
-            self.zoomToLatestLocation(with: location!)
+            if(location != nil){ self.zoomToLatestLocation(with: location!)
+            }
+            else{
+                let alertController = UIAlertController(title: "Error", message:
+                    "Invalid Location", preferredStyle: UIAlertController.Style.alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default,handler: nil))
+                
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
+        }
+    }
+    @IBAction func moveBack(_ sender: Any) {
+        configureLocationServices()
+        textField.text = ""
     }
     override func viewDidLoad() {
         super.viewDidLoad()
