@@ -80,12 +80,12 @@
 			isa = PBXGroup;
 			children = (
 				26772E0B219B96E100F5EAF8 /* AppDelegate.swift */,
-				26218C1421A3A47300D6FBC6 /* AddItemViewController.swift */,
 				26772E1D219B9FAF00F5EAF8 /* SignUpViewController.swift */,
 				26772E21219BA1FF00F5EAF8 /* LandingScreenViewController.swift */,
 				26772E0F219B96E100F5EAF8 /* Main.storyboard */,
-				26F2A8FF21AB50620058621F /* AddItemViewControllerLocation.swift */,
+				26218C1421A3A47300D6FBC6 /* AddItemViewController.swift */,
 				26F2A8FD21AB4DFD0058621F /* AddItemViewControllerImages.swift */,
+				26F2A8FF21AB50620058621F /* AddItemViewControllerLocation.swift */,
 				26A6AEA9219E0F82009157D6 /* PasswordResetViewController.swift */,
 				2600B27A219DFCD000B6A55B /* MyProfileViewController.swift */,
 				9F2463D1219FB844002A180F /* mapViewController.swift */,
@@ -247,6 +247,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FinalProjectiOS/Pods-FinalProjectiOS-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -254,6 +255,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

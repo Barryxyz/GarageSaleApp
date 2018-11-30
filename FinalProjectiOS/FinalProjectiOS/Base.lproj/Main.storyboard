@@ -384,7 +384,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="tel"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                             </textField>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DaO-iP-4jz">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -512,7 +512,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eGh-Xb-2dP">
                                 <rect key="frame" x="174" y="184" width="176" height="30"/>
@@ -616,7 +616,7 @@
         <!--Sell an Item-->
         <scene sceneID="Fn7-oH-Uto">
             <objects>
-                <navigationController navigationBarHidden="YES" id="VJw-Xh-A4m" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="sellItemNC" navigationBarHidden="YES" id="VJw-Xh-A4m" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Sell an Item" image="icons8-add-new-30" id="Ghi-Fe-hTz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZJI-oO-nEL">
                         <autoresizingMask key="autoresizingMask"/>
@@ -635,7 +635,7 @@
         <!--Sell an Item-->
         <scene sceneID="bj2-Er-QYq">
             <objects>
-                <viewController id="Jav-Am-JcN" customClass="AddItemViewController" customModule="FinalProjectiOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="itemInfoVC" id="Jav-Am-JcN" customClass="AddItemViewController" customModule="FinalProjectiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yX1-5B-SK4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -919,9 +919,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icons8-add-new-30" width="30" height="30"/>
-        <image name="icons8-menu-30" width="30" height="30"/>
-        <image name="icons8-user-30" width="30" height="30"/>
-        <image name="icons8-waypoint-map-30" width="30" height="30"/>
+        <image name="icons8-add-new-30" width="22.5" height="22.5"/>
+        <image name="icons8-menu-30" width="22.5" height="22.5"/>
+        <image name="icons8-user-30" width="22.5" height="22.5"/>
+        <image name="icons8-waypoint-map-30" width="22.5" height="22.5"/>
     </resources>
 </document>

@@ -11,6 +11,10 @@ import CoreLocation
 import FirebaseDatabase
 import FirebaseAuth
 
+
+var currItemDict: [String:String] = ["itemName": "", "price": "", "category": "", "description": "", "itemID": "", "streetAddr": "",
+                                     "city": "", "state": "", "zipCode": "", "finalStringAddr": ""]
+
 class AddItemViewController: UIViewController,  UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var itemNameTextField: UITextField!
@@ -46,7 +50,12 @@ class AddItemViewController: UIViewController,  UIPickerViewDelegate, UIPickerVi
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        
+        //preset values if they exist
+        itemNameTextField.text = currItemDict["itemName"]
+        priceTextField.text = currItemDict["price"]
+        categoryTextField.text = currItemDict["category"]
+        descriptionTextView.text = currItemDict["description"]
         //places a border around the textview (which by default, doesn't have one)
         self.descriptionTextView.layer.borderWidth = 0.5
         self.descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
@@ -62,6 +71,8 @@ class AddItemViewController: UIViewController,  UIPickerViewDelegate, UIPickerVi
         //connect to Firebase
         ref = Database.database().reference()
         ref2 = Database.database().reference()
+        
+        super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
@@ -95,7 +106,12 @@ class AddItemViewController: UIViewController,  UIPickerViewDelegate, UIPickerVi
                              "itemDescription": self.descriptionTextView.text!,
                              "userPosted": Auth.auth().currentUser!.uid
             ]
-            self.ref?.child("Items").child(itemNameTextField.text!).setValue(itemData)
+            currItemDict["itemName"] = self.itemNameTextField.text!
+            currItemDict["price"] = "$"+self.priceTextField.text!
+            currItemDict["category"] = self.categoryTextField.text!
+            currItemDict["description"] = self.descriptionTextView.text!
+
+            self.ref?.child("Items").child(itemNameTextField.text! + Auth.auth().currentUser!.uid).setValue(itemData)
             //second ref to save it to user's own list can be used for loading personal user list
             ref2 = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid).child("UserItemsList").child(itemNameTextField.text!)
             self.ref2?.setValue(itemData)

@@ -43,7 +43,6 @@ class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         let contactPicker = UIPickerView()
         contactMethodTextField.inputView = contactPicker
         contactPicker.delegate=self
@@ -84,6 +83,8 @@ class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             //dismissing the alert after retrieving data from firebase
             loadingAlert.dismiss(animated: false, completion: nil)
         })
+        super.viewDidLoad()
+
 
         // Do any additional setup after loading the view.
     }

@@ -8,8 +8,17 @@
 
 import UIKit
 import MobileCoreServices
+import FirebaseDatabase
+import FirebaseStorage
+import FirebaseAuth
 
 class AddItemViewControllerImages: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+
+    var itemRef:DatabaseReference!
+    var itemRef2:DatabaseReference!
+    var itemRef3:DatabaseReference!
+
+
 
     //code below gets image to be shown
     @IBOutlet weak var imageProgressView: UIProgressView!
@@ -55,23 +64,119 @@ class AddItemViewControllerImages: UIViewController, UIImagePickerControllerDele
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         imageProgressView.layer.cornerRadius = 7
         imageProgressView.clipsToBounds = true
         imageProgressView.transform = imageProgressView.transform.scaledBy(x: 1.0, y: 4.0)
         imageProgressView.progress = 0.6666666666666666666
+        itemRef = Database.database().reference()
+        itemRef2 = Database.database().reference()
+        
+        //if the itemID is defined it means, we have done the next image action and loaded that image to that location
+        if (currItemDict["itemID"] != ""){
+            //start alert to load data
+            let loadingAlert = UIAlertController(title: nil, message: "Retrieving Image...", preferredStyle: .alert)
+            
+            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 2, y: 5, width: 50, height: 50))
+            loadingIndicator.hidesWhenStopped = true
+            loadingIndicator.style = UIActivityIndicatorView.Style.gray
+            loadingIndicator.startAnimating();
+            loadingAlert.view.addSubview(loadingIndicator)
+            present(loadingAlert, animated: true, completion: nil)
+
+            
+            let storageRef = Storage.storage().reference(forURL: "gs://finalmobileappproject-4e6a6.appspot.com/images/" +
+                currItemDict["itemID"]! + ".png")
+            storageRef.downloadURL(completion: { (url, error) in
+                if (error != nil) {
+                    print("WOW BIG ERROR STOP HERE BECAUSE IMAGE HASNT BEEN LOADED")
+                }
+                else{
+                    do{
+                        let data = try Data(contentsOf: url!)
+                        let image = UIImage(data: data as Data)
+                        self.imageView.image = image
+                    }catch{
+                        print("THERE WAS AN ERROR WITH TRYING TO GET THE IMAGE IN THE TRY CATCH BLOCK")
+                    }
+                }
+            })
+            //dismiss it after everything is complete
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {loadingAlert.dismiss(animated: false, completion: nil)})
+        }
+      
+        
+        super.viewDidLoad()
+       
 
         
-
         // Do any additional setup after loading the view.
     }
-    
+    //upload image into firebase storage here
     @IBAction func nextImageAction(_ sender: Any) {
-        let itemLocationVC = UIStoryboard(name:"Main", bundle: nil).instantiateViewController(withIdentifier: "itemLocationVC")
-        self.navigationController?.pushViewController(itemLocationVC, animated: true)
+        //no image loaded yet
+        if (self.imageView.image == nil ){
+            let alertController = UIAlertController(title: "Post Item Error", message: "You have not selected an image for your item. Please select an image to continue to the next step.", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else{
+            // Points to the root reference
+            let storageRef = Storage.storage().reference()
+            
+            //unique ID for picture string
+            let imageTitle = NSUUID().uuidString
+            //save the currentItemID, this will update as needed
+            currItemDict["itemID"] = imageTitle
+            // Create a reference to the file you want to upload
+            let imageRefPoint = storageRef.child("images").child(imageTitle + ".png")
+            
+            // Local file you want to upload
+            let uploadedLocalImage = self.imageView.image!.pngData()
+            
+            // Upload the file to the path above
+            let uploadData = imageRefPoint.putData(uploadedLocalImage!, metadata: nil) { (metadata, error) in
+                if (error != nil){
+                    print("There was an error with uploading your data")
+                    return
+                }
+                //in case we want to use metadata at some point for this project?
+                guard let metadata = metadata else {
+                    print("An error occured when trying to get metadata")
+                    // Uh-oh, an error occurred!
+                    return
+                }
+                // You can also access to download URL after upload.
+                imageRefPoint.downloadURL { (url, error) in
+                    guard let downloadURL = url else {
+                        print("There was an error accessing the download URL for your string")
+                        return
+                    }
+                    let finalURL = downloadURL.absoluteString
+                    //set the imageURL for the item in the list
+                    let urlValue: [String:String]  = ["downloadURL": finalURL,
+                                    "imageAbsoluteURL": "gs://finalmobileappproject-4e6a6.appspot.com/images/" +
+                                        currItemDict["itemID"]! + ".png" ]
+                    print(currItemDict["itemName"]!)
+                    self.itemRef?.child("Items").child(currItemDict["itemName"]! + Auth.auth().currentUser!.uid).updateChildValues(urlValue)
+                    //second ref to save it to user's own list can be used for loading personal user list
+                    self.itemRef2 = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid).child("UserItemsList")
+                        .child(currItemDict["itemName"]!)
+                    self.itemRef2?.updateChildValues(urlValue)
+                }
+            }
+            //send segue to next location view controller
+            let itemLocationVC = UIStoryboard(name:"Main", bundle: nil).instantiateViewController(withIdentifier: "itemLocationVC")
+            self.navigationController?.pushViewController(itemLocationVC, animated: true)
+        }
+
     }
 
     @IBAction func backImageAction(_ sender: Any) {
+        //we want it so that clicking back here keeps the image on the next runthrough assuming it hasn't changed
+        //if it exists do exactly that
+        //WILL ONLY EXIST WHEN USER PRESSES NEXT BECAUSE THAT MEANS THEY WANT THAT IMAGE otherwise we assume they wanted to go back first
+        print("THIS IS MY CURRENT ITEM ID: " + currItemDict["itemID"]!)
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -84,5 +189,4 @@ class AddItemViewControllerImages: UIViewController, UIImagePickerControllerDele
         // Pass the selected object to the new view controller.
     }
     */
-
 }
