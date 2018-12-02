@@ -21,6 +21,7 @@
 		26F2A8FE21AB4DFD0058621F /* AddItemViewControllerImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F2A8FD21AB4DFD0058621F /* AddItemViewControllerImages.swift */; };
 		26F2A90021AB50620058621F /* AddItemViewControllerLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F2A8FF21AB50620058621F /* AddItemViewControllerLocation.swift */; };
 		9F2463D2219FB844002A180F /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2463D1219FB844002A180F /* mapViewController.swift */; };
+		9FD1A60721B3998F00056A0E /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD1A60621B3998F00056A0E /* Artwork.swift */; };
 		FE21A1EFF415C240A0D9A7C3 /* Pods_FinalProjectiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337B2501691A89701376615E /* Pods_FinalProjectiOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		26F2A8FF21AB50620058621F /* AddItemViewControllerLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewControllerLocation.swift; sourceTree = "<group>"; };
 		337B2501691A89701376615E /* Pods_FinalProjectiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinalProjectiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F2463D1219FB844002A180F /* mapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
+		9FD1A60621B3998F00056A0E /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		CB4CCA8A6AD509FA17DDBA17 /* Pods-FinalProjectiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProjectiOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProjectiOS/Pods-FinalProjectiOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +96,7 @@
 				26772E14219B96E100F5EAF8 /* LaunchScreen.storyboard */,
 				26A23D6921A39A9B004D95D8 /* GoogleService-Info.plist */,
 				26772E17219B96E100F5EAF8 /* Info.plist */,
+				9FD1A60621B3998F00056A0E /* Artwork.swift */,
 			);
 			path = FinalProjectiOS;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26F2A8FE21AB4DFD0058621F /* AddItemViewControllerImages.swift in Sources */,
+				9FD1A60721B3998F00056A0E /* Artwork.swift in Sources */,
 				2600B27B219DFCD000B6A55B /* MyProfileViewController.swift in Sources */,
 				26F2A90021AB50620058621F /* AddItemViewControllerLocation.swift in Sources */,
 				26A6AEAA219E0F82009157D6 /* PasswordResetViewController.swift in Sources */,

@@ -236,8 +236,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="moveCoordinate:" destination="Dc6-mE-2Vq" eventType="editingDidEndOnExit" id="UY8-Ch-fOK"/>
-                                    <action selector="textFieldTapped:" destination="Dc6-mE-2Vq" eventType="editingDidBegin" id="RHo-fl-nxm"/>
+                                    <action selector="textFieldTapped:" destination="Dc6-mE-2Vq" eventType="editingDidBegin" id="UY9-TF-Eof"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zm9-A1-vOe">
@@ -919,9 +918,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icons8-add-new-30" width="22.5" height="22.5"/>
-        <image name="icons8-menu-30" width="22.5" height="22.5"/>
-        <image name="icons8-user-30" width="22.5" height="22.5"/>
-        <image name="icons8-waypoint-map-30" width="22.5" height="22.5"/>
+        <image name="icons8-add-new-30" width="30" height="30"/>
+        <image name="icons8-menu-30" width="30" height="30"/>
+        <image name="icons8-user-30" width="30" height="30"/>
+        <image name="icons8-waypoint-map-30" width="30" height="30"/>
     </resources>
 </document>

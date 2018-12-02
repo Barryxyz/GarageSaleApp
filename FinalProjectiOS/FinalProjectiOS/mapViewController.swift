@@ -14,6 +14,7 @@ import GooglePlaces
 class mapViewController: UIViewController {
     let GoogleSearchPlaceApiKey = "AIzaSyCTytwuD4NgY4zE8dXXRr8N5cR_3ge28cM"
     let api = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=bar&key=" + "AIzaSyCEq3onTjJzDzmjFUzMGBpHijc8V_g5olo"
+    var current = CLLocationCoordinate2D()
     private let locationManager = CLLocationManager()
     private var currentCoordinate: CLLocationCoordinate2D?
     @IBOutlet weak var mapView: MKMapView!
@@ -24,11 +25,12 @@ class mapViewController: UIViewController {
         let acController = GMSAutocompleteViewController()
         acController.delegate = self as GMSAutocompleteViewControllerDelegate
         present(acController, animated: true, completion: nil)
+
     }
     @IBAction func moveCoordinate(_ sender: Any) {
         let address = textField.text!
         if(address == ""){
-            let alertController = UIAlertController(title: "Error", message:
+            let alertController = UIAlertController(title: "Location Error", message:
                 "No address was selected", preferredStyle: UIAlertController.Style.alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default,handler: nil))
             
@@ -47,7 +49,7 @@ class mapViewController: UIViewController {
             if(location != nil){ self.zoomToLatestLocation(with: location!)
             }
             else{
-                let alertController = UIAlertController(title: "Error", message:
+                let alertController = UIAlertController(title: "Location Error", message:
                     "Invalid Location", preferredStyle: UIAlertController.Style.alert)
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default,handler: nil))
                 
@@ -57,12 +59,18 @@ class mapViewController: UIViewController {
         }
     }
     @IBAction func moveBack(_ sender: Any) {
-        configureLocationServices()
+        zoomToLatestLocation(with: current)
         textField.text = ""
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLocationServices()
+        mapView.delegate = self
+        let artwork = Artwork(title: "King David Kalakaua",
+                              locationName: "Waikiki Gateway Park",
+                              discipline: "Sculpture",
+                              coordinate: CLLocationCoordinate2D(latitude: 38.0506172, longitude: -78.5039878))
+        mapView.addAnnotation(artwork)
         
 
         // Do any additional setup after loading the view.
@@ -115,6 +123,7 @@ extension mapViewController: CLLocationManagerDelegate{
         }
         
         currentCoordinate = latestLocation.coordinate
+        current = latestLocation.coordinate
     }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         print("The status changed")
@@ -140,3 +149,28 @@ extension mapViewController: GMSAutocompleteViewControllerDelegate {
         dismiss(animated: true, completion: nil)
     }
 }
+
+extension mapViewController: MKMapViewDelegate {
+    // 1
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        // 2
+        guard let annotation = annotation as? Artwork else { return nil }
+        // 3
+        let identifier = "marker"
+        var view: MKMarkerAnnotationView
+        // 4
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            as? MKMarkerAnnotationView {
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        } else {
+            // 5
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        return view
+    }
+}
+
