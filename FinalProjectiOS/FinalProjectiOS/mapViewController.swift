@@ -12,11 +12,20 @@ import GoogleMaps
 import GooglePlaces
 
 class mapViewController: UIViewController {
+    var artworks: [Artwork] = []
     let GoogleSearchPlaceApiKey = "AIzaSyCTytwuD4NgY4zE8dXXRr8N5cR_3ge28cM"
     let api = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=bar&key=" + "AIzaSyCEq3onTjJzDzmjFUzMGBpHijc8V_g5olo"
     var current = CLLocationCoordinate2D()
     private let locationManager = CLLocationManager()
     private var currentCoordinate: CLLocationCoordinate2D?
+    private var selectedName = "No title was found"
+    private var selectedAddress = "No address was found"
+    private var selectedCoordinate: CLLocationCoordinate2D?
+    var selectedPlace = Artwork(title: "Cheese",
+                                
+                                locationName: "Cheese",
+                                discipline: "Sculpture",
+                                coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0))
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var textField: UITextField!
     
@@ -47,6 +56,14 @@ class mapViewController: UIViewController {
             let location = placemarks?.first?.location?.coordinate
             print("Lat: \(String(describing: lat)), Lon: \(String(describing: lon))")
             if(location != nil){ self.zoomToLatestLocation(with: location!)
+                self.mapView.removeAnnotation(self.selectedPlace);
+                self.selectedCoordinate = location
+                self.selectedPlace = Artwork(title: String(self.selectedName),
+                                
+                                            locationName: String(self.selectedAddress),
+                                      discipline: "Sculpture",
+                                      coordinate: self.selectedCoordinate!)
+                self.mapView.addAnnotation(self.selectedPlace)
             }
             else{
                 let alertController = UIAlertController(title: "Location Error", message:
@@ -62,15 +79,36 @@ class mapViewController: UIViewController {
         zoomToLatestLocation(with: current)
         textField.text = ""
     }
+//    func loadInitialData() {
+//        // 1
+//        guard let fileName = Bundle.main.path(forResource: "PublicArt", ofType: "json")
+//            else { return }
+//        let optionalData = try? Data(contentsOf: URL(fileURLWithPath: "https://finalmobileappproject-4e6a6.firebaseio.com/Items.json?"))
+//
+//        guard
+//            let data = optionalData,
+//            // 2
+//            let json = try? JSONSerialization.jsonObject(with: data),
+//            // 3
+//            let dictionary = json as? [String: Any],
+//            // 4
+//            let works = dictionary["data"] as? [[Any]]
+//            else { return }
+//        // 5
+//        let validWorks = works.flatMap { Artwork(json: $0)}
+//        artworks.append(contentsOf: validWorks)
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLocationServices()
         mapView.delegate = self
-        let artwork = Artwork(title: "King David Kalakaua",
-                              locationName: "Waikiki Gateway Park",
-                              discipline: "Sculpture",
-                              coordinate: CLLocationCoordinate2D(latitude: 38.0506172, longitude: -78.5039878))
-        mapView.addAnnotation(artwork)
+//        loadInitialData()
+        mapView.addAnnotations(artworks)
+//        let artwork = Artwork(title: "King David Kalakaua",
+//                              locationName: "Waikiki Gateway Park",
+//                              discipline: "Sculpture",
+//                              coordinate: CLLocationCoordinate2D(latitude: 38.0506172, longitude: -78.5039878))
+//        mapView.addAnnotation(artwork)
         
 
         // Do any additional setup after loading the view.
@@ -136,7 +174,9 @@ extension mapViewController: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         // Get the place name from 'GMSAutocompleteViewController'
         // Then display the name in textField
-        textField.text = place.name
+        textField.text = place.formattedAddress
+        selectedAddress = place.formattedAddress!
+        selectedName = place.name
         // Dismiss the GMSAutocompleteViewController when something is selected
         dismiss(animated: true, completion: nil)
     }
@@ -171,6 +211,12 @@ extension mapViewController: MKMapViewDelegate {
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
         return view
+    }
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
+                 calloutAccessoryControlTapped control: UIControl) {
+        let location = view.annotation as! Artwork
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        location.mapItem().openInMaps(launchOptions: launchOptions)
     }
 }
 

@@ -1,7 +1,7 @@
 import MapKit
 import Contacts
 
-class Artwork: NSObject, MKAnnotation {
+class locationPicker: NSObject, MKAnnotation {
     let title: String?
     let locationName: String
     let discipline: String
