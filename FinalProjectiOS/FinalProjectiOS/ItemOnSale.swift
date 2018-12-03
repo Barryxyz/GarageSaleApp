@@ -53,7 +53,7 @@ class ItemOnSale: NSObject, MKAnnotation {
     var subtitle: String? {
         return streetAddress
     }
-    func mapItem() -> MKMapItem {
+    func itemMapItem() -> MKMapItem {
         let addressDict = [CNPostalAddressStreetKey: subtitle!]
         let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDict)
         let mapItem = MKMapItem(placemark: placemark)

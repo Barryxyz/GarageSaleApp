@@ -10,9 +10,12 @@ import UIKit
 import MapKit
 import GoogleMaps
 import GooglePlaces
+import FirebaseAuth
+import FirebaseDatabase
 
 class mapViewController: UIViewController {
-    var artworks: [Artwork] = []
+    var ref:DatabaseReference!
+    var itemsOnSale: [ItemOnSale] = []
     let GoogleSearchPlaceApiKey = "AIzaSyCTytwuD4NgY4zE8dXXRr8N5cR_3ge28cM"
     let api = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=bar&key=" + "AIzaSyCEq3onTjJzDzmjFUzMGBpHijc8V_g5olo"
     var current = CLLocationCoordinate2D()
@@ -98,12 +101,46 @@ class mapViewController: UIViewController {
 //        let validWorks = works.flatMap { Artwork(json: $0)}
 //        artworks.append(contentsOf: validWorks)
 //    }
+    
+    func loadInitialData(){
+        var addItems: [ItemOnSale] = []
+        ref = Database.database().reference(withPath: "Items")
+        ref.observe(.value, with: { snapshot in
+            print(snapshot.value as Any)
+            for child in snapshot.children {
+                let snapshotValue = snapshot.value as! NSDictionary
+                print(child)
+                let downloadURL = snapshotValue["downloadUrl"]
+                let imageAbsoluteURL = snapshotValue["imageAbsoluteUrl"]
+                let itemCategory = snapshotValue["itemCategory"]
+                let itemDescription = snapshotValue["itemDescription"]
+                let itemName = snapshotValue["itemName"]
+                let itemPrice = snapshotValue["itemPrice"]
+                print(itemPrice)
+                var coordinate = CLLocationCoordinate2D()
+                if let latitude = Double(snapshotValue["latitude"] as! String),
+                    let longitude = Double(snapshotValue["longitude"] as! String) {
+                    coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                } else {
+                    coordinate = CLLocationCoordinate2D()
+                }
+                let streetAddress = snapshotValue["streetAddress"]
+                let userPosted = snapshotValue["userPosted"]
+                
+                let item = ItemOnSale(downloadURL: downloadURL as! String, imageAbsoluteURL: imageAbsoluteURL as! String, itemCategory: itemCategory as! String, itemDescription: itemDescription as! String, itemName: itemName as! String, itemPrice: itemPrice as! String, coordinate: coordinate, streetAddress: streetAddress as! String, userPosted: userPosted as! String)
+                addItems.append(item)
+            }
+
+    })
+        self.itemsOnSale = addItems
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLocationServices()
         mapView.delegate = self
+        loadInitialData()
+        mapView.addAnnotations(itemsOnSale)
 //        loadInitialData()
-        mapView.addAnnotations(artworks)
 //        let artwork = Artwork(title: "King David Kalakaua",
 //                              locationName: "Waikiki Gateway Park",
 //                              discipline: "Sculpture",
@@ -217,6 +254,32 @@ extension mapViewController: MKMapViewDelegate {
         let location = view.annotation as! Artwork
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         location.mapItem().openInMaps(launchOptions: launchOptions)
+    }
+    func itemMapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        // 2
+        guard let annotation = annotation as? ItemOnSale else { return nil }
+        // 3
+        let identifier = "marker"
+        var view: MKMarkerAnnotationView
+        // 4
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            as? MKMarkerAnnotationView {
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        } else {
+            // 5
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        return view
+    }
+    func itemMapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
+                 calloutAccessoryControlTapped control: UIControl) {
+        let location = view.annotation as! ItemOnSale
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        location.itemMapItem().openInMaps(launchOptions: launchOptions)
     }
 }
 
