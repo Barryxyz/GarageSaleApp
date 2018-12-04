@@ -17,8 +17,8 @@ class ItemCell: UITableViewCell {
     @IBOutlet weak var cellPrice: UILabel!
     
     func setItemDetails(saleItem: saleItem){
-        cellImage.text = saleItem.itemImage
-        cellSeller.text = saleItem.itemSeller
+        cellImage.text = saleItem.itemCategory
+        cellSeller.text = saleItem.userPosted
         cellName.text = saleItem.itemName
         cellPrice.text = saleItem.itemPrice
     }

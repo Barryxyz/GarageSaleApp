@@ -7,39 +7,48 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
+import MapKit
 //var saleItemsList = [saleItem]()
 // add this later UITableViewDataSource, UITableViewDelegate
 
 class ItemListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    var ref:DatabaseReference!
     @IBOutlet weak var tableView: UITableView!
     
     var saleItemsList: [saleItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        saleItemsList = createInitialArray()
+        print(saleItemsList)
+        createInitialArray()
+        print(saleItemsList)
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
     }
     
-    func createInitialArray() -> [saleItem]{
+    func createInitialArray(){
 //        //create saleItems
-        var tempSalesList : [saleItem] = []
-        let salesItem1 = saleItem(itemImage: "Item1 Image", itemName: "Item1 Name", itemSeller: "ChrisYeung" , itemPrice: "$10.50")
-        let salesItem2 = saleItem(itemImage: "Item2 Image", itemName: "Item2 Name", itemSeller: "ChrisYeung" , itemPrice: "$11.50")
-        let salesItem3 = saleItem(itemImage: "Item3 Image", itemName: "Item3 Name", itemSeller: "ChrisYeung" , itemPrice: "$12.50")
-        let salesItem4 = saleItem(itemImage: "Item4 Image", itemName: "Item4 Name", itemSeller: "ChrisYeung" , itemPrice: "$13.50")
-        
-        tempSalesList.append(salesItem1)
-        tempSalesList.append(salesItem2)
-        tempSalesList.append(salesItem3)
-        tempSalesList.append(salesItem4)
-        return tempSalesList
-//        //requires retrieving information from firebase
-//        //have tempArray in here
-//        //appended items in that tempArray and return it
+        ref = Database.database().reference(withPath: "Items")
+        ref.observe(.value, with: { snapshot in
+            
+            var saleItemsTemp: [saleItem] = []
+            
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let item = saleItem(from: snapshot) {
+                    print(item.itemPrice)
+                    print(item.itemName)
+                    saleItemsTemp.append(item)
+                }
+            }
+            self.saleItemsList = saleItemsTemp
+            print("THIS IS TEMP ARR", saleItemsTemp)
+            self.tableView.reloadData()
+        })
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

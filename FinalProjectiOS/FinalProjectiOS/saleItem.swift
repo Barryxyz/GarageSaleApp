@@ -8,18 +8,49 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
+import MapKit
 
-class saleItem{
-    var itemImage: String //change this back to UIImageView after finishing testing
-    var itemName: String
-    var itemSeller: String
-    var itemPrice: String
+class saleItem: NSObject {
+    let downloadURL: String?
+    let imageAbsoluteURL: String
+    let itemCategory: String
+    let itemDescription: String
+    let itemName: String
+    let itemPrice: String
+    let coordinate: CLLocationCoordinate2D
+    let streetAddress: String
+    let userPosted: String
     
-    init(itemImage: String, itemName: String, itemSeller: String, itemPrice: String) {
-        self.itemImage = itemImage
+    init(downloadURL: String, imageAbsoluteURL: String, itemCategory: String, itemDescription: String, itemName: String, itemPrice: String, coordinate: CLLocationCoordinate2D, streetAddress: String, userPosted: String) {
+        self.downloadURL = downloadURL
+        self.imageAbsoluteURL = imageAbsoluteURL
+        self.itemCategory = itemCategory
+        self.itemDescription = itemDescription
         self.itemName = itemName
-        self.itemSeller = itemSeller
         self.itemPrice = itemPrice
+        self.coordinate = coordinate
+        self.streetAddress = streetAddress
+        self.userPosted = userPosted
+        super.init()
     }
     
+    init?(from snapshot: DataSnapshot){
+        let snapshotValue = snapshot.value as? [String: Any]
+        self.downloadURL = snapshotValue?["downloadURL"] as? String
+        self.imageAbsoluteURL = (snapshotValue?["imageAbsoluteURL"] as? String)!
+        self.itemCategory = (snapshotValue?["itemCategory"] as? String)!
+        self.itemDescription = (snapshotValue?["itemDescription"] as? String)!
+        self.itemName = (snapshotValue?["itemName"] as? String)!
+        self.itemPrice = (snapshotValue?["itemPrice"] as? String)!
+        if let latitude = Double(snapshotValue!["latitude"] as! String),
+            let longitude = Double(snapshotValue!["longitude"] as! String) {
+            self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        } else {
+            self.coordinate = CLLocationCoordinate2D()
+        }
+        self.streetAddress = (snapshotValue?["streetAddress"] as? String)!
+        self.userPosted = (snapshotValue?["userPosted"] as? String)!
+    }
 }
