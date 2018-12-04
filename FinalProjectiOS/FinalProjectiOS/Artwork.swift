@@ -12,6 +12,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class Artwork: NSObject, MKAnnotation {
+    let title: String?
     let downloadURL: String?
     let imageAbsoluteURL: String
     let itemCategory: String
@@ -23,6 +24,7 @@ class Artwork: NSObject, MKAnnotation {
     let userPosted: String
     
     init(downloadURL: String, imageAbsoluteURL: String, itemCategory: String, itemDescription: String, itemName: String, itemPrice: String, coordinate: CLLocationCoordinate2D, streetAddress: String, userPosted: String) {
+        self.title = "Cheese"
         self.downloadURL = downloadURL
         self.imageAbsoluteURL = imageAbsoluteURL
         self.itemCategory = itemCategory
@@ -50,6 +52,7 @@ class Artwork: NSObject, MKAnnotation {
         }
         self.streetAddress = (snapshotValue?["streetAddress"] as? String)!
         self.userPosted = (snapshotValue?["userPosted"] as? String)!
+        self.title = "Cheese"
     }
     var markerTintColor: UIColor  {
         switch itemCategory {

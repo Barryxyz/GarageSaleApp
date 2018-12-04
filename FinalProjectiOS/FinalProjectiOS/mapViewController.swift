@@ -238,7 +238,7 @@ extension mapViewController: MKMapViewDelegate{
     // 1
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         // 2
-        guard let annotation = annotation as? locationPicker else { return nil }
+        guard let annotation = annotation as? ItemOnSale else { return nil }
         // 3
         let identifier = "marker"
         var view: MKMarkerAnnotationView

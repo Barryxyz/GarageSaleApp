@@ -12,6 +12,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class ItemOnSale: NSObject, MKAnnotation {
+    let title: String?
     let downloadURL: String?
     let imageAbsoluteURL: String
     let itemCategory: String
@@ -32,6 +33,7 @@ class ItemOnSale: NSObject, MKAnnotation {
         self.coordinate = coordinate
         self.streetAddress = streetAddress
         self.userPosted = userPosted
+        self.title = "Cheese"
         super.init()
     }
     init?(from snapshot: DataSnapshot){
@@ -50,6 +52,7 @@ class ItemOnSale: NSObject, MKAnnotation {
         }
         self.streetAddress = (snapshotValue?["streetAddress"] as? String)!
         self.userPosted = (snapshotValue?["userPosted"] as? String)!
+        self.title = "Cheese"
     }
     var subtitle: String? {
         return streetAddress
