@@ -19,7 +19,6 @@ class AddItemViewControllerImages: UIViewController, UIImagePickerControllerDele
     var itemRef3:DatabaseReference!
 
 
-
     //code below gets image to be shown
     @IBOutlet weak var imageProgressView: UIProgressView!
     
@@ -70,47 +69,62 @@ class AddItemViewControllerImages: UIViewController, UIImagePickerControllerDele
         imageProgressView.progress = 0.6666666666666666666
         itemRef = Database.database().reference()
         itemRef2 = Database.database().reference()
-        
         //if the itemID is defined it means, we have done the next image action and loaded that image to that location
-        if (currItemDict["itemID"] != ""){
-            //start alert to load data
-            let loadingAlert = UIAlertController(title: nil, message: "Retrieving Image...", preferredStyle: .alert)
-            
-            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 2, y: 5, width: 50, height: 50))
-            loadingIndicator.hidesWhenStopped = true
-            loadingIndicator.style = UIActivityIndicatorView.Style.gray
-            loadingIndicator.startAnimating();
-            loadingAlert.view.addSubview(loadingIndicator)
-            present(loadingAlert, animated: true, completion: nil)
-
-            
-            let storageRef = Storage.storage().reference(forURL: "gs://finalmobileappproject-4e6a6.appspot.com/images/" +
-                currItemDict["itemID"]! + ".png")
-            storageRef.downloadURL(completion: { (url, error) in
-                if (error != nil) {
-                    print("WOW BIG ERROR STOP HERE BECAUSE IMAGE HASNT BEEN LOADED")
-                }
-                else{
-                    do{
-                        let data = try Data(contentsOf: url!)
-                        let image = UIImage(data: data as Data)
-                        self.imageView.image = image
-                    }catch{
-                        print("THERE WAS AN ERROR WITH TRYING TO GET THE IMAGE IN THE TRY CATCH BLOCK")
-                    }
-                }
-            })
-            //dismiss it after everything is complete
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {loadingAlert.dismiss(animated: false, completion: nil)})
-        }
+//        if (currItemDict["itemID"] != ""){
+//            //start alert to load data
+//            let loadingAlert = UIAlertController(title: nil, message: "Retrieving Image...", preferredStyle: .alert)
+//            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 2, y: 5, width: 50, height: 50))
+//            loadingIndicator.hidesWhenStopped = true
+//            loadingIndicator.style = UIActivityIndicatorView.Style.gray
+//            loadingIndicator.startAnimating();
+//            loadingAlert.view.addSubview(loadingIndicator)
+//            present(loadingAlert, animated: true, completion: nil)
+//            let storageRef = Storage.storage().reference(forURL: "gs://finalmobileappproject-4e6a6.appspot.com/images/" +
+//                currItemDict["itemID"]! + ".png")
+//            storageRef.downloadURL(completion: { (url, error) in
+//                if (error != nil) {
+//                    print("WOW BIG ERROR STOP HERE BECAUSE IMAGE HASNT BEEN LOADED")
+//                }
+//                else{
+//                    do{
+//                       // group.enter()
+//                        let data = try Data(contentsOf: url!)
+//                        let image = UIImage(data: data as Data)
+//                        self.imageView.image = image
+//                        //group.leave()
+////                        group.notify(queue:DispatchQueue.main) {
+////                            self.loadingAlert!.dismiss(animated: false, completion: nil)
+////                            print("everything has been completed")
+////                        }
+//                    }catch{
+//                        print("THERE WAS AN ERROR WITH TRYING TO GET THE IMAGE IN THE TRY CATCH BLOCK")
+//                    }
+//                }
+//            })
+//            //dismiss it after everything is complete
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0, execute: {loadingAlert.dismiss(animated: false, completion: nil)})
+//        }
       
         
         super.viewDidLoad()
        
 
-        
+    
         // Do any additional setup after loading the view.
     }
+    
+    func createLoadingAlert() -> UIAlertController {
+        let loadingAlert = UIAlertController(title: nil, message: "Retrieving Image...", preferredStyle: .alert)
+        
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 2, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+        loadingAlert.view.addSubview(loadingIndicator)
+        self.present(loadingAlert, animated: true, completion: nil)
+        return loadingAlert
+    }
+    
     //upload image into firebase storage here
     @IBAction func nextImageAction(_ sender: Any) {
         //no image loaded yet
