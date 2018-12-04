@@ -236,8 +236,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="moveCoordinate:" destination="Dc6-mE-2Vq" eventType="editingDidEndOnExit" id="UY8-Ch-fOK"/>
-                                    <action selector="textFieldTapped:" destination="Dc6-mE-2Vq" eventType="editingDidBegin" id="RHo-fl-nxm"/>
+                                    <action selector="textFieldTapped:" destination="Dc6-mE-2Vq" eventType="editingDidBegin" id="UY9-TF-Eof"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zm9-A1-vOe">
@@ -334,29 +333,26 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="109.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="spS-kp-EPg">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="spS-kp-EPg">
                                                     <rect key="frame" x="144" y="24" width="122" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price (USD)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="QYF-RK-Njc">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price (USD)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="QYF-RK-Njc">
                                                     <rect key="frame" x="284" y="45" width="91" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDf-SP-7Ml">
-                                                    <rect key="frame" x="15" y="41" width="102" height="26"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="saX-Zl-sWp">
+                                                    <rect key="frame" x="5" y="6" width="132" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Seller" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="Qc0-Q5-lkF">
-                                                    <rect key="frame" x="158" y="58" width="108" height="23"/>
+                                                    <rect key="frame" x="151" y="58" width="108" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -365,7 +361,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="cellImage" destination="EDf-SP-7Ml" id="KQX-Bc-fCj"/>
+                                            <outlet property="cellImage" destination="saX-Zl-sWp" id="hdS-Rq-wBE"/>
                                             <outlet property="cellName" destination="spS-kp-EPg" id="O3f-5F-UXb"/>
                                             <outlet property="cellPrice" destination="QYF-RK-Njc" id="1zP-xp-kz6"/>
                                             <outlet property="cellSeller" destination="Qc0-Q5-lkF" id="FbV-b5-cqj"/>
@@ -695,8 +691,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="st7-uA-Rnh" kind="relationship" relationship="viewControllers" id="pS2-bb-qc0"/>
                         <segue destination="1Er-Oh-Sxi" kind="relationship" relationship="viewControllers" id="tOr-8A-DnZ"/>
+                        <segue destination="6gk-aM-zQ4" kind="relationship" relationship="viewControllers" id="9s3-6J-4no"/>
+                        <segue destination="st7-uA-Rnh" kind="relationship" relationship="viewControllers" id="pS2-bb-qc0"/>
                         <segue destination="VJw-Xh-A4m" kind="relationship" relationship="viewControllers" id="jIv-BP-kkM"/>
                         <segue destination="Av4-gW-Ab1" kind="relationship" relationship="viewControllers" id="sZo-3U-1hM"/>
                     </connections>
@@ -1011,9 +1008,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icons8-add-new-30" width="22.5" height="22.5"/>
-        <image name="icons8-menu-30" width="22.5" height="22.5"/>
-        <image name="icons8-user-30" width="22.5" height="22.5"/>
-        <image name="icons8-waypoint-map-30" width="22.5" height="22.5"/>
+        <image name="icons8-add-new-30" width="30" height="30"/>
+        <image name="icons8-menu-30" width="30" height="30"/>
+        <image name="icons8-user-30" width="30" height="30"/>
+        <image name="icons8-waypoint-map-30" width="30" height="30"/>
     </resources>
 </document>

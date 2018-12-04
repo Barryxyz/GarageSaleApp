@@ -51,6 +51,16 @@ class AddItemViewController: UIViewController,  UIPickerViewDelegate, UIPickerVi
     
     override func viewDidLoad() {
         
+//        currItemDict["itemName"] = ""
+//        currItemDict["price"] = ""
+//        currItemDict["category"] = ""
+//        currItemDict["description"] = ""
+//        currItemDict["itemID"] = ""
+//        currItemDict["streetAddr"] = ""
+//        currItemDict["city"] = ""
+//        currItemDict["state"] = ""
+//        currItemDict["zipCode"] = ""
+//        currItemDict["finalStringAddr"] = ""
         //preset values if they exist
         itemNameTextField.text = currItemDict["itemName"]
         priceTextField.text = currItemDict["price"]
