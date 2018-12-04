@@ -103,36 +103,40 @@ class mapViewController: UIViewController {
 //    }
     
     func loadInitialData(){
-        var addItems: [ItemOnSale] = []
+        var itemList: [ItemOnSale] = []
         ref = Database.database().reference(withPath: "Items")
         ref.observe(.value, with: { snapshot in
-            print(snapshot.value as Any)
             for child in snapshot.children {
-                let snapshotValue = snapshot.value as! NSDictionary
-                print(child)
-                let downloadURL = snapshotValue["downloadUrl"]
-                let imageAbsoluteURL = snapshotValue["imageAbsoluteUrl"]
-                let itemCategory = snapshotValue["itemCategory"]
-                let itemDescription = snapshotValue["itemDescription"]
-                let itemName = snapshotValue["itemName"]
-                let itemPrice = snapshotValue["itemPrice"]
-                print(itemPrice)
-                var coordinate = CLLocationCoordinate2D()
-                if let latitude = Double(snapshotValue["latitude"] as! String),
-                    let longitude = Double(snapshotValue["longitude"] as! String) {
-                    coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-                } else {
-                    coordinate = CLLocationCoordinate2D()
+                if let snapshot = child as? DataSnapshot,
+                    let item = ItemOnSale(from: snapshot) {
+                    itemList.append(item)
                 }
-                let streetAddress = snapshotValue["streetAddress"]
-                let userPosted = snapshotValue["userPosted"]
                 
-                let item = ItemOnSale(downloadURL: downloadURL as! String, imageAbsoluteURL: imageAbsoluteURL as! String, itemCategory: itemCategory as! String, itemDescription: itemDescription as! String, itemName: itemName as! String, itemPrice: itemPrice as! String, coordinate: coordinate, streetAddress: streetAddress as! String, userPosted: userPosted as! String)
-                addItems.append(item)
+//                let snapshotValue = snapshot.value as! NSDictionary
+//                print(child)
+//                let downloadURL = snapshotValue["downloadUrl"]
+//                let imageAbsoluteURL = snapshotValue["imageAbsoluteUrl"]
+//                let itemCategory = snapshotValue["itemCategory"]
+//                let itemDescription = snapshotValue["itemDescription"]
+//                let itemName = snapshotValue["itemName"]
+//                let itemPrice = snapshotValue["itemPrice"]
+//                print(itemPrice)
+//                var coordinate = CLLocationCoordinate2D()
+//                if let latitude = Double(snapshotValue["latitude"] as! String),
+//                    let longitude = Double(snapshotValue["longitude"] as! String) {
+//                    coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+//                } else {
+//                    coordinate = CLLocationCoordinate2D()
+//                }
+//                let streetAddress = snapshotValue["streetAddress"]
+//                let userPosted = snapshotValue["userPosted"]
+//
+//                let item = ItemOnSale(downloadURL: downloadURL as! String, imageAbsoluteURL: imageAbsoluteURL as! String, itemCategory: itemCategory as! String, itemDescription: itemDescription as! String, itemName: itemName as! String, itemPrice: itemPrice as! String, coordinate: coordinate, streetAddress: streetAddress as! String, userPosted: userPosted as! String)
+//                addItems.append(item)
             }
 
     })
-        self.itemsOnSale = addItems
+        self.itemsOnSale = itemList
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -231,7 +235,11 @@ extension mapViewController: MKMapViewDelegate {
     // 1
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         // 2
-        guard let annotation = annotation as? Artwork else { return nil }
+        guard let annotation = annotation as? Artwork else {
+            print("cheese")
+            print("cheese")
+            return nil
+            }
         // 3
         let identifier = "marker"
         var view: MKMarkerAnnotationView
@@ -279,7 +287,7 @@ extension mapViewController: MKMapViewDelegate {
                  calloutAccessoryControlTapped control: UIControl) {
         let location = view.annotation as! ItemOnSale
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        location.itemMapItem().openInMaps(launchOptions: launchOptions)
+        location.mapItem().openInMaps(launchOptions: launchOptions)
     }
 }
 

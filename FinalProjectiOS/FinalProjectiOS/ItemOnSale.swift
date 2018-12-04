@@ -8,6 +8,8 @@
 
 import MapKit
 import Contacts
+import FirebaseAuth
+import FirebaseDatabase
 
 class ItemOnSale: NSObject, MKAnnotation {
     let downloadURL: String?
@@ -32,28 +34,27 @@ class ItemOnSale: NSObject, MKAnnotation {
         self.userPosted = userPosted
         super.init()
     }
-    init?(json: [Any]) {
-        // 1
-        self.downloadURL = json[0] as? String ?? "No Title"
-        self.imageAbsoluteURL = json[1] as! String
-        self.itemCategory = json[2] as! String
-        self.itemDescription = json[3] as! String
-        self.itemName = json[4] as! String
-        self.itemPrice = json[5] as! String
-        // 2
-        if let latitude = Double(json[7] as! String),
-            let longitude = Double(json[8] as! String) {
+    init?(from snapshot: DataSnapshot){
+        let snapshotValue = snapshot.value as? [String: Any]
+        self.downloadURL = snapshotValue?["downloadURL"] as? String
+        self.imageAbsoluteURL = (snapshotValue?["imageAbsoluteURL"] as? String)!
+        self.itemCategory = (snapshotValue?["itemCategory"] as? String)!
+        self.itemDescription = (snapshotValue?["itemDescription"] as? String)!
+        self.itemName = (snapshotValue?["itemName"] as? String)!
+        self.itemPrice = (snapshotValue?["itemPrice"] as? String)!
+        if let latitude = Double(snapshotValue!["latitude"] as! String),
+            let longitude = Double(snapshotValue!["longitude"] as! String) {
             self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         } else {
             self.coordinate = CLLocationCoordinate2D()
         }
-        self.streetAddress = json[9] as! String
-        self.userPosted = json[10] as! String
+        self.streetAddress = (snapshotValue?["streetAddress"] as? String)!
+        self.userPosted = (snapshotValue?["userPosted"] as? String)!
     }
     var subtitle: String? {
         return streetAddress
     }
-    func itemMapItem() -> MKMapItem {
+    func mapItem() -> MKMapItem {
         let addressDict = [CNPostalAddressStreetKey: subtitle!]
         let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDict)
         let mapItem = MKMapItem(placemark: placemark)
