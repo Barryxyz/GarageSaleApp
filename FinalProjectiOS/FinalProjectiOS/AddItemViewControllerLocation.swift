@@ -272,17 +272,17 @@ class AddItemViewControllerLocation: UIViewController, CLLocationManagerDelegate
         //redirect user to starting screen
         func finishedPostingHandler(alert: UIAlertAction){
             //need to clear dictionary before you return to first screen
-            print("BEFORE CLEARING CURRITEMDICT: " + currItemDict["itemName"]!)
-            currItemDict["itemName"] = ""
-            currItemDict["price"] = ""
-            currItemDict["category"] = ""
-            currItemDict["description"] = ""
-            currItemDict["itemID"] = ""
-            currItemDict["streetAddr"] = ""
-            currItemDict["city"] = ""
-            currItemDict["state"] = ""
-            currItemDict["zipCode"] = ""
-            currItemDict["finalStringAddr"] = ""
+//            print("BEFORE CLEARING CURRITEMDICT: " + currItemDict["itemName"]!)
+//            currItemDict["itemName"] = ""
+//            currItemDict["price"] = ""
+//            currItemDict["category"] = ""
+//            currItemDict["description"] = ""
+//            currItemDict["itemID"] = ""
+//            currItemDict["streetAddr"] = ""
+//            currItemDict["city"] = ""
+//            currItemDict["state"] = ""
+//            currItemDict["zipCode"] = ""
+//            currItemDict["finalStringAddr"] = ""
 //            print("AFTER CLEARING CURRITEMDICT: " + currItemDict["streetAddr"]!)
             let sellItemNC = UIStoryboard(name:"Main", bundle: nil).instantiateViewController(withIdentifier: "itemInfoVC")
             self.navigationController?.pushViewController(sellItemNC, animated: true)

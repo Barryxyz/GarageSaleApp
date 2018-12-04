@@ -5,29 +5,91 @@
 //  Created by Tin on 11/30/18.
 //  Copyright © 2018 Tin. All rights reserved.
 //
-
+/***************************************************************************************
+ *  REFERENCES
+ *  Title: SDWebImage
+ *  Author:Konstantinos K., Bogdan Poplauschi, Chester Liu, DreamPiggy, Wu Zhong
+ *  Date: 12/4/2018
+ *  Availability: https://github.com/SDWebImage/SDWebImage
+ *  Purpose: Used SDWebImage library which is an asynchronous cache for loading images from firebase (actually directly recommended by firebase
+ itself (link here: https://firebase.google.com/docs/storage/ios/download-files#downloading_images_with_firebaseui).  This was used for rounding out our cell image feature.  We had the images but had to figure out a way to manage this asynchronous process.  SDWebImage is helpful since it asynchronously loads images from firebase and caches them.  Actually recommended by firebase themselves as good solution for this asynchronous caching problem.
+ *
+ ***************************************************************************************/
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
 import MapKit
-//var saleItemsList = [saleItem]()
-// add this later UITableViewDataSource, UITableViewDelegate
+import SDWebImage
 
 class ItemListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
     var ref:DatabaseReference!
     @IBOutlet weak var tableView: UITableView!
+    var isFinished = false
+    //var loadingAlert: UIAlertController? = nil
+//    var tableData:[AnyObject]!
+//    var task: URLSessionDownloadTask!
+//    var session: URLSession!
+//    var cache:NSCache<AnyObject, AnyObject>!
+
     
     var saleItemsList: [saleItem] = []
-    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        print(saleItemsList)
+        //loadingAlert = createLoadingAlert()
         createInitialArray()
-        print(saleItemsList)
+        super.viewDidLoad()
+        
+        
         tableView.delegate = self
         tableView.dataSource = self
-        // Do any additional setup after loading the view.
+        
+//        let loadingAlert = UIAlertController(title: nil, message: "Retrieving Image...", preferredStyle: .alert)
+//
+//        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 2, y: 5, width: 50, height: 50))
+//        loadingIndicator.hidesWhenStopped = true
+//        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+//        loadingIndicator.startAnimating();
+//        loadingAlert.view.addSubview(loadingIndicator)
+//        self.present(loadingAlert, animated: true, completion: nil)
+//
+//        if (isFinished == true){
+//            loadingAlert.dismiss(animated: false, completion: nil)
+//
+//        }
+        
+//        func createLoadingAlert() -> UIAlertController {
+//            group.enter()
+//            let loadingAlert = UIAlertController(title: nil, message: "Retrieving Image...", preferredStyle: .alert)
+//
+//            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 2, y: 5, width: 50, height: 50))
+//            loadingIndicator.hidesWhenStopped = true
+//            loadingIndicator.style = UIActivityIndicatorView.Style.gray
+//            loadingIndicator.startAnimating();
+//            loadingAlert.view.addSubview(loadingIndicator)
+//            self.present(loadingAlert, animated: true, completion: nil)
+//            group.leave()
+//            return loadingAlert
+//        }
+        
+//        let loadingAlert = UIAlertController(title: nil, message: "Retrieving Image...", preferredStyle: .alert)
+//
+//        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 2, y: 5, width: 50, height: 50))
+//        loadingIndicator.hidesWhenStopped = true
+//        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+//        loadingIndicator.startAnimating();
+//        loadingAlert.view.addSubview(loadingIndicator)
+//        self.present(loadingAlert, animated: true, completion: nil)
+//        group.enter()
+//        if (isFinished == true){
+//            group.leave()
+//        }
+////        let loadingAlertResult: UIAlertController = createLoadingAlert()
+//
+//        // Do any additional setup after loading the view.
+//        group.notify(queue:DispatchQueue.main) {
+//            print("everything has been completed")
+//        }
+//        }
     }
     
     func createInitialArray(){
@@ -54,14 +116,87 @@ class ItemListViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return saleItemsList.count
     }
+    
+    func BG(_ block: @escaping ()->Void) {
+        DispatchQueue.global(qos: .default).async(execute: block)
+    }
+    
+    func UI(_ block: @escaping ()->Void) {
+        DispatchQueue.main.async(execute: block)
+    }
+    
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let saleItem = saleItemsList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
+        //cell.setItemDetails(saleItem: saleItem)
         
+        cell.cellSeller.text = saleItem.userPosted
+        cell.cellName.text = saleItem.itemName
+        cell.cellPrice.text = saleItem.itemPrice
+        
+        //used external library called SDwebimage to cache images asynchronously
+        
+        cell.cellImage.sd_setImage(with: URL(string: saleItem.downloadURL!), placeholderImage: UIImage(named: "placeholder"))
+
+    
+        //this is the absolute URL property not the download URL property gets the image
         //set info details for that cell
-        cell.setItemDetails(saleItem: saleItem)
+//        let group = DispatchGroup() // initialize
+//        let storageRef = Storage.storage().reference(forURL: saleItem.imageAbsoluteURL)
+//        storageRef.downloadURL(completion: { (url, error) in
+//            if (error != nil) {
+//                print("WOW BIG ERROR STOP HERE BECAUSE IMAGE HASNT BEEN LOADED")
+//            }
+//            else{
+//                do{
+//                    group.enter()
+////                    let loadingAlert = UIAlertController(title: nil, message: "Loading Images...", preferredStyle: .alert)
+////
+////                    let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 2, y: 5, width: 50, height: 50))
+////                    loadingIndicator.hidesWhenStopped = true
+////                    loadingIndicator.style = UIActivityIndicatorView.Style.gray
+////                    loadingIndicator.startAnimating();
+////                    loadingAlert.view.addSubview(loadingIndicator)
+////                    self.present(loadingAlert, animated: true, completion: nil)
+//
+//                    let data = try Data(contentsOf: url!)
+//                    let image = UIImage(data: data as Data)
+//                    cell.cellImage.image = image
+//                    group.leave()
+//                    group.notify(queue:DispatchQueue.main) {
+//                        self.isFinished = true
+//                        self.loadingAlert!.dismiss(animated: false, completion: nil)
+//                        print("everything has been completed")
+//                    }
+//                    //self.imageView.image = image
+//                    //replace line above with the cellImage stuff
+//
+//                }catch{
+//                    print("THERE WAS AN ERROR WITH TRYING TO GET THE IMAGE IN THE TRY CATCH BLOCK")
+//                }
+//            }
+//        })
         return cell
+    }
+    
+    
+
+    
+    func createLoadingAlert() -> UIAlertController {
+        let loadingAlert = UIAlertController(title: nil, message: "Loading Item Images...", preferredStyle: .alert)
+
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 2, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+        loadingAlert.view.addSubview(loadingIndicator)
+        self.present(loadingAlert, animated: true, completion: nil)
+        return loadingAlert
+    }
+//
+    func dismissLoadingAlert(loadingAlert: UIAlertController){
+        loadingAlert.dismiss(animated: false, completion: nil)
     }
 
     
@@ -110,5 +245,4 @@ class ItemListViewController: UIViewController, UITableViewDataSource, UITableVi
         // Pass the selected object to the new view controller.
     }
     */
-
 }

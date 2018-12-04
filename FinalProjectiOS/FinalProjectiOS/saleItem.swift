@@ -38,19 +38,19 @@ class saleItem: NSObject {
     
     init?(from snapshot: DataSnapshot){
         let snapshotValue = snapshot.value as? [String: Any]
-        self.downloadURL = snapshotValue?["downloadURL"] as? String
-        self.imageAbsoluteURL = (snapshotValue?["imageAbsoluteURL"] as? String)!
-        self.itemCategory = (snapshotValue?["itemCategory"] as? String)!
-        self.itemDescription = (snapshotValue?["itemDescription"] as? String)!
-        self.itemName = (snapshotValue?["itemName"] as? String)!
-        self.itemPrice = (snapshotValue?["itemPrice"] as? String)!
-        if let latitude = Double(snapshotValue!["latitude"] as! String),
-            let longitude = Double(snapshotValue!["longitude"] as! String) {
+        self.downloadURL = snapshotValue?["downloadURL"] as? String ?? "https://"
+        self.imageAbsoluteURL = (snapshotValue?["imageAbsoluteURL"] as? String ?? "gs://")
+        self.itemCategory = (snapshotValue?["itemCategory"] as? String ?? "")
+        self.itemDescription = (snapshotValue?["itemDescription"] as? String ?? "")
+        self.itemName = (snapshotValue?["itemName"] as? String ?? "")
+        self.itemPrice = (snapshotValue?["itemPrice"] as? String ?? "")
+        if let latitude = Double(snapshotValue!["latitude"] as? String ?? "0.0"),
+            let longitude = Double(snapshotValue!["longitude"] as? String ?? "0.0") {
             self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         } else {
             self.coordinate = CLLocationCoordinate2D()
         }
-        self.streetAddress = (snapshotValue?["streetAddress"] as? String)!
-        self.userPosted = (snapshotValue?["userPosted"] as? String)!
+        self.streetAddress = (snapshotValue?["streetAddress"] as? String ?? "")
+        self.userPosted = (snapshotValue?["userPosted"] as? String ?? "")
     }
 }
