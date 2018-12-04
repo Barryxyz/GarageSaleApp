@@ -39,6 +39,9 @@ class ItemOnSale: NSObject, MKAnnotation {
     
     var imageName: String? {
         if itemCategory == "Furniture" { return "Furniture" }
+        if itemCategory == "School" { return "School" }
+        if itemCategory == "Clothes" { return "Clothes" }
+        if itemCategory == "Other" { return "Other" }
         return "Flag"
     }
     init(downloadURL: String, imageAbsoluteURL: String, itemCategory: String, itemDescription: String, itemName: String, itemPrice: String, coordinate: CLLocationCoordinate2D, streetAddress: String, userPosted: String) {
