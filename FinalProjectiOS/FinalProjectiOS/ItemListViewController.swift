@@ -10,23 +10,51 @@ import UIKit
 //var saleItemsList = [saleItem]()
 // add this later UITableViewDataSource, UITableViewDelegate
 
-class ItemListViewController: UIViewController {
+class ItemListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-
+    @IBOutlet weak var tableView: UITableView!
+    
+    var saleItemsList: [saleItem] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        saleItemsList = createInitialArray()
+        tableView.delegate = self
+        tableView.dataSource = self
         // Do any additional setup after loading the view.
     }
     
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//    }
-//
+    func createInitialArray() -> [saleItem]{
+//        //create saleItems
+        var tempSalesList : [saleItem] = []
+        let salesItem1 = saleItem(itemImage: "Item1 Image", itemName: "Item1 Name", itemSeller: "ChrisYeung" , itemPrice: "$10.50")
+        let salesItem2 = saleItem(itemImage: "Item2 Image", itemName: "Item2 Name", itemSeller: "ChrisYeung" , itemPrice: "$11.50")
+        let salesItem3 = saleItem(itemImage: "Item3 Image", itemName: "Item3 Name", itemSeller: "ChrisYeung" , itemPrice: "$12.50")
+        let salesItem4 = saleItem(itemImage: "Item4 Image", itemName: "Item4 Name", itemSeller: "ChrisYeung" , itemPrice: "$13.50")
+        
+        tempSalesList.append(salesItem1)
+        tempSalesList.append(salesItem2)
+        tempSalesList.append(salesItem3)
+        tempSalesList.append(salesItem4)
+        return tempSalesList
+//        //requires retrieving information from firebase
+//        //have tempArray in here
+//        //appended items in that tempArray and return it
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return saleItemsList.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let saleItem = saleItemsList[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
+        
+        //set info details for that cell
+        cell.setItemDetails(saleItem: saleItem)
+        return cell
+    }
+
     
 //    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        // #warning Incomplete implementation, return the number of rows

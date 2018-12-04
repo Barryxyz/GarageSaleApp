@@ -10,7 +10,19 @@ import UIKit
 
 class ItemCell: UITableViewCell {
 
-//    override func awakeFromNib() {
+    
+    @IBOutlet weak var cellImage: UILabel!
+    @IBOutlet weak var cellSeller: UILabel!
+    @IBOutlet weak var cellName: UILabel!
+    @IBOutlet weak var cellPrice: UILabel!
+    
+    func setItemDetails(saleItem: saleItem){
+        cellImage.text = saleItem.itemImage
+        cellSeller.text = saleItem.itemSeller
+        cellName.text = saleItem.itemName
+        cellPrice.text = saleItem.itemPrice
+    }
+    //    override func awakeFromNib() {
 //        super.awakeFromNib()
 //        // Initialization code
 //    }
