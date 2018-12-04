@@ -21,6 +21,7 @@
 		26F2A8FE21AB4DFD0058621F /* AddItemViewControllerImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F2A8FD21AB4DFD0058621F /* AddItemViewControllerImages.swift */; };
 		26F2A90021AB50620058621F /* AddItemViewControllerLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F2A8FF21AB50620058621F /* AddItemViewControllerLocation.swift */; };
 		9F2463D2219FB844002A180F /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2463D1219FB844002A180F /* mapViewController.swift */; };
+		9F7AFB5721B652DF00FE3558 /* ArtworkViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7AFB5621B652DF00FE3558 /* ArtworkViews.swift */; };
 		9FD1A60721B3998F00056A0E /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD1A60621B3998F00056A0E /* Artwork.swift */; };
 		9FE5A76421B4CF5B00202B69 /* locationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE5A76321B4CF5B00202B69 /* locationPicker.swift */; };
 		9FE5A76621B4D38A00202B69 /* ItemOnSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE5A76521B4D38A00202B69 /* ItemOnSale.swift */; };
@@ -46,6 +47,7 @@
 		26F2A8FF21AB50620058621F /* AddItemViewControllerLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewControllerLocation.swift; sourceTree = "<group>"; };
 		337B2501691A89701376615E /* Pods_FinalProjectiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinalProjectiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F2463D1219FB844002A180F /* mapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
+		9F7AFB5621B652DF00FE3558 /* ArtworkViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkViews.swift; sourceTree = "<group>"; };
 		9FD1A60621B3998F00056A0E /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		9FE5A76321B4CF5B00202B69 /* locationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationPicker.swift; sourceTree = "<group>"; };
 		9FE5A76521B4D38A00202B69 /* ItemOnSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemOnSale.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				9FD1A60621B3998F00056A0E /* Artwork.swift */,
 				9FE5A76321B4CF5B00202B69 /* locationPicker.swift */,
 				9FE5A76521B4D38A00202B69 /* ItemOnSale.swift */,
+				9F7AFB5621B652DF00FE3558 /* ArtworkViews.swift */,
 			);
 			path = FinalProjectiOS;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				26B38804219DE371000F176F /* tabBarController.swift in Sources */,
 				9F2463D2219FB844002A180F /* mapViewController.swift in Sources */,
 				26218C1521A3A47300D6FBC6 /* AddItemViewController.swift in Sources */,
+				9F7AFB5721B652DF00FE3558 /* ArtworkViews.swift in Sources */,
 				26772E1E219B9FAF00F5EAF8 /* SignUpViewController.swift in Sources */,
 				26772E0C219B96E100F5EAF8 /* AppDelegate.swift in Sources */,
 			);

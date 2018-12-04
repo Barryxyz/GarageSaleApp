@@ -24,11 +24,11 @@ class mapViewController: UIViewController {
     private var selectedName = "No title was found"
     private var selectedAddress = "No address was found"
     private var selectedCoordinate: CLLocationCoordinate2D?
-    var selectedPlace = Artwork(title: "Cheese",
-                                
+    var selectedPlace = locationPicker(title: "Cheese",
+
                                 locationName: "Cheese",
                                 discipline: "Sculpture",
-                                coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0))
+                               coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0))
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var textField: UITextField!
     
@@ -61,11 +61,10 @@ class mapViewController: UIViewController {
             if(location != nil){ self.zoomToLatestLocation(with: location!)
                 self.mapView.removeAnnotation(self.selectedPlace);
                 self.selectedCoordinate = location
-                self.selectedPlace = Artwork(title: String(self.selectedName),
-                                
+                self.selectedPlace = locationPicker(title: String(self.selectedName),
                                             locationName: String(self.selectedAddress),
                                       discipline: "Sculpture",
-                                      coordinate: self.selectedCoordinate!)
+                                     coordinate: self.selectedCoordinate!)
                 self.mapView.addAnnotation(self.selectedPlace)
             }
             else{
@@ -109,7 +108,9 @@ class mapViewController: UIViewController {
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot,
                     let item = ItemOnSale(from: snapshot) {
+                    self.mapView.addAnnotation(item)
                     itemList.append(item)
+                    print(itemList)
                 }
                 
 //                let snapshotValue = snapshot.value as! NSDictionary
@@ -142,6 +143,8 @@ class mapViewController: UIViewController {
         super.viewDidLoad()
         configureLocationServices()
         mapView.delegate = self
+        mapView.register(ArtworkMarkerView.self,
+                         forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         loadInitialData()
         mapView.addAnnotations(itemsOnSale)
 //        loadInitialData()
@@ -231,15 +234,11 @@ extension mapViewController: GMSAutocompleteViewControllerDelegate {
     }
 }
 
-extension mapViewController: MKMapViewDelegate {
+extension mapViewController: MKMapViewDelegate{
     // 1
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         // 2
-        guard let annotation = annotation as? Artwork else {
-            print("cheese")
-            print("cheese")
-            return nil
-            }
+        guard let annotation = annotation as? locationPicker else { return nil }
         // 3
         let identifier = "marker"
         var view: MKMarkerAnnotationView
@@ -256,38 +255,5 @@ extension mapViewController: MKMapViewDelegate {
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
         return view
-    }
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
-                 calloutAccessoryControlTapped control: UIControl) {
-        let location = view.annotation as! Artwork
-        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        location.mapItem().openInMaps(launchOptions: launchOptions)
-    }
-    func itemMapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        // 2
-        guard let annotation = annotation as? ItemOnSale else { return nil }
-        // 3
-        let identifier = "marker"
-        var view: MKMarkerAnnotationView
-        // 4
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-            as? MKMarkerAnnotationView {
-            dequeuedView.annotation = annotation
-            view = dequeuedView
-        } else {
-            // 5
-            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            view.canShowCallout = true
-            view.calloutOffset = CGPoint(x: -5, y: 5)
-            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-        }
-        return view
-    }
-    func itemMapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
-                 calloutAccessoryControlTapped control: UIControl) {
-        let location = view.annotation as! ItemOnSale
-        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        location.mapItem().openInMaps(launchOptions: launchOptions)
     }
 }
-
