@@ -23,6 +23,21 @@ class ItemOnSale: NSObject, MKAnnotation {
     let streetAddress: String
     let userPosted: String
     
+    var markerTintColor: UIColor  {
+        switch itemCategory {
+        case "Furniture":
+            return .red
+        case "School":
+            return .cyan
+        case "Clothes":
+            return .blue
+        case "Other":
+            return .purple
+        default:
+            return .green
+        }
+    }
+    
     init(downloadURL: String, imageAbsoluteURL: String, itemCategory: String, itemDescription: String, itemName: String, itemPrice: String, coordinate: CLLocationCoordinate2D, streetAddress: String, userPosted: String) {
         self.downloadURL = downloadURL
         self.imageAbsoluteURL = imageAbsoluteURL
