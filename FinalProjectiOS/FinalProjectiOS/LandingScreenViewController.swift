@@ -16,6 +16,8 @@ class LandingScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTapAway)))
+
 
         // Do any additional setup after loading the view.
     }
@@ -45,6 +47,10 @@ class LandingScreenViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc func onTapAway(sender: UITapGestureRecognizer){
+        view.endEditing(true)
     }
     
     

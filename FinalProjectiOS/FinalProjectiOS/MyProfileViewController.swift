@@ -112,6 +112,7 @@ class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             //dismissing the alert after retrieving data from firebase
             loadingAlert.dismiss(animated: false, completion: nil)
         })
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTapAway)))
         super.viewDidLoad()
 
 
@@ -230,5 +231,8 @@ class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         // Pass the selected object to the new view controller.
     }
     */
+    @objc func onTapAway(sender: UITapGestureRecognizer){
+        view.endEditing(true)
+    }
 
 }

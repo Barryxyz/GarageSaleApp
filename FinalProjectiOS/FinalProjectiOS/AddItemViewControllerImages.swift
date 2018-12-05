@@ -105,7 +105,7 @@ class AddItemViewControllerImages: UIViewController, UIImagePickerControllerDele
 //            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0, execute: {loadingAlert.dismiss(animated: false, completion: nil)})
 //        }
       
-        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTapAway)))
         super.viewDidLoad()
        
 
@@ -192,6 +192,10 @@ class AddItemViewControllerImages: UIViewController, UIImagePickerControllerDele
         //WILL ONLY EXIST WHEN USER PRESSES NEXT BECAUSE THAT MEANS THEY WANT THAT IMAGE otherwise we assume they wanted to go back first
         print("THIS IS MY CURRENT ITEM ID: " + currItemDict["itemID"]!)
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func onTapAway(sender: UITapGestureRecognizer){
+        view.endEditing(true)
     }
     
     /*

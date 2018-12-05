@@ -46,6 +46,7 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTapAway)))
         let contactPicker = UIPickerView()
         ContactMethod.inputView = contactPicker
         contactPicker.delegate=self
@@ -105,6 +106,9 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         }
     }
     
+    @objc func onTapAway(sender: UITapGestureRecognizer){
+        view.endEditing(true)
+    }
     /*
     // MARK: - Navigation
 

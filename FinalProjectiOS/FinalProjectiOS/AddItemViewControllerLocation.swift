@@ -184,6 +184,7 @@ class AddItemViewControllerLocation: UIViewController, CLLocationManagerDelegate
         locationRef = Database.database().reference()
         locationRef2 = Database.database().reference()
         
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTapAway)))
         
         //put this last
         super.viewDidLoad()
@@ -290,8 +291,10 @@ class AddItemViewControllerLocation: UIViewController, CLLocationManagerDelegate
         
         //otherwise get the location, if it is a valid location, it won't throw an error here
         //set a boolean here? as to know when to go to this next if loop for posting it to the final??
-        
-        
+    }
+    
+    @objc func onTapAway(sender: UITapGestureRecognizer){
+        view.endEditing(true)
     }
     /*
     // MARK: - Navigation

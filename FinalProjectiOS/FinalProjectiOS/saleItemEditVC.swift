@@ -6,6 +6,17 @@
 //  Copyright © 2018 Tin. All rights reserved.
 //
 
+/***************************************************************************************
+ *  REFERENCES
+ *  Title: SDWebImage
+ *  Authors: Konstantinos K., Bogdan Poplauschi, Chester Liu, DreamPiggy, Wu Zhong
+ *  Date: 12/4/2018
+ *  Availability: https://github.com/SDWebImage/SDWebImage
+ *  Purpose: Used SDWebImage library which is an asynchronous cache for loading images from firebase (actually directly recommended by firebase
+ itself (link here: https://firebase.google.com/docs/storage/ios/download-files#downloading_images_with_firebaseui).  This was used for rounding out our cell image feature.  We had the images but had to figure out a way to manage this asynchronous process.  SDWebImage is helpful since it asynchronously loads images from firebase and caches them (leading to faster load times).  Actually recommended by firebase themselves as good solution for this asynchronous caching problem.
+ *
+ ***************************************************************************************/
+
 import UIKit
 import CoreLocation
 import FirebaseDatabase
@@ -93,8 +104,11 @@ class saleItemEditVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         let contactPicker = UIPickerView()
         categoryTextField.inputView = contactPicker
         contactPicker.delegate=self
-        
+        //add this to set image
         itemImageView.sd_setImage(with: URL(string: currProfileItem.downloadURL!), placeholderImage: UIImage(named: "placeholder"))
+        //add this to dismiss keyboard
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTapAway)))
+
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -201,7 +215,7 @@ class saleItemEditVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                                                               "imageAbsoluteURL": "gs://finalmobileappproject-4e6a6.appspot.com/images/" +
                                                                 imageTitle + ".png" ]
                             print(currItemDict["itemName"]!)
-                            self.ref3 = Database.database().reference().child(currProfileItem.itemName + Auth.auth().currentUser!.uid)
+                            self.ref3 = Database.database().reference().child("Items").child(currProfileItem.itemName + Auth.auth().currentUser!.uid)
                             self.ref3.updateChildValues(urlValue)
                             //second ref to save it to user's own list can be used for loading personal user list
                             self.ref4 = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid).child("UserItemsList")
@@ -217,6 +231,10 @@ class saleItemEditVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 }
             }
         }
+    }
+    
+    @objc func onTapAway(sender: UITapGestureRecognizer){
+        view.endEditing(true)
     }
     
     /*

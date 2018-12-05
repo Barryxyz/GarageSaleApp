@@ -82,9 +82,19 @@ class AddItemViewController: UIViewController,  UIPickerViewDelegate, UIPickerVi
         ref = Database.database().reference()
         ref2 = Database.database().reference()
         
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTapAway)))
+        
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    
+    @IBAction func clearActionButton(_ sender: Any) {
+        itemNameTextField.text = ""
+        priceTextField.text = ""
+        categoryTextField.text = ""
+        descriptionTextView.text = ""
     }
     
     @IBAction func nextActionTwo(_ sender: Any) {
@@ -134,6 +144,10 @@ class AddItemViewController: UIViewController,  UIPickerViewDelegate, UIPickerVi
             let itemImageVC = UIStoryboard(name:"Main", bundle: nil).instantiateViewController(withIdentifier: "itemImageVC")
             self.navigationController?.pushViewController(itemImageVC, animated: true)
         }
+    }
+    
+    @objc func onTapAway(sender: UITapGestureRecognizer){
+        view.endEditing(true)
     }
    
     /*

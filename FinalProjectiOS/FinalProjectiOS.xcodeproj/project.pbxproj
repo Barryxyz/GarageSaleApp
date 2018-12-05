@@ -105,6 +105,7 @@
 				26772E0F219B96E100F5EAF8 /* Main.storyboard */,
 				26F2A90521B394AB0058621F /* saleItem.swift */,
 				26F2A90121B1DF3F0058621F /* ItemListViewController.swift */,
+				9FD53F6D21B78F15008DE75E /* itemInfoViewController.swift */,
 				26F2A90321B1F2270058621F /* ItemCell.swift */,
 				26218C1421A3A47300D6FBC6 /* AddItemViewController.swift */,
 				26F2A8FD21AB4DFD0058621F /* AddItemViewControllerImages.swift */,
@@ -123,7 +124,6 @@
 				9FE5A76321B4CF5B00202B69 /* locationPicker.swift */,
 				9FE5A76521B4D38A00202B69 /* ItemOnSale.swift */,
 				9F7AFB5621B652DF00FE3558 /* ArtworkViews.swift */,
-				9FD53F6D21B78F15008DE75E /* itemInfoViewController.swift */,
 			);
 			path = FinalProjectiOS;
 			sourceTree = "<group>";
