@@ -74,7 +74,7 @@ class ItemOnSale: NSObject, MKAnnotation {
         self.userPosted = (snapshotValue?["userPosted"] as? String ?? "")
     }
     var subtitle: String? {
-        return streetAddress
+        return itemPrice + " : " + itemDescription
     }
     func mapItem() -> MKMapItem {
         let addressDict = [CNPostalAddressStreetKey: subtitle!]
