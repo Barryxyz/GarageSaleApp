@@ -9,9 +9,15 @@
 import UIKit
 import MessageUI
 
-class itemInfoViewController: UIViewController, MFMessageComposeViewControllerDelegate {
+class itemInfoViewController: UIViewController, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate{
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        
+        if (result == MessageComposeResult.cancelled)
+        {NSLog("Message cancelled")}
+        else if (result == MessageComposeResult.sent)
+        {NSLog("Message sent")}
+        else
+        {NSLog("Message failed")}
+        controller.dismiss(animated: true)
     }
     override func viewDidLoad() {
         print(currCell.itemName)
@@ -25,8 +31,9 @@ class itemInfoViewController: UIViewController, MFMessageComposeViewControllerDe
         composeVC.messageComposeDelegate = self
         
         // Configure the fields of the interface.
+        //Put sellers number here
         composeVC.recipients = ["17574727149"]
-        composeVC.body = "I love Swift!"
+        composeVC.body = ""
         
         // Present the view controller modally.
         if MFMessageComposeViewController.canSendText() {
@@ -43,6 +50,7 @@ displayMessageInterface()
      @IBAction func emailAction(_ sender: Any) {
      }
      @IBAction func phoneAction(_ sender: Any) {
+        //Enter sellers number here
         if let url = URL(string: "tel://15713156646") {
             print("phone works")
             if #available(iOS 10.0, *) {
