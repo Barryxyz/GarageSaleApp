@@ -218,6 +218,17 @@ class ItemListViewController: UIViewController, UITableViewDataSource, UITableVi
         return saleItemsList.count
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        
+        //        currCell = saleItemsList[indexPath.row]
+        //        performSegue(withIdentifier: "itemInfoSegue", sender: row)
+        
+        let itemInfoVC = UIStoryboard(name:"Main", bundle: nil).instantiateViewController(withIdentifier: "itemInfo")
+        self.navigationController?.pushViewController(itemInfoVC, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let saleItem = saleItemsList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
