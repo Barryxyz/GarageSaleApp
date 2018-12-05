@@ -22,6 +22,10 @@ import FirebaseStorage
 import MapKit
 import SDWebImage
 
+var myLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
+
+var currCell:saleItem = saleItem(downloadURL: "https://", imageAbsoluteURL: "gs://", itemCategory: "", itemDescription: "", itemName: "", itemPrice: "", coordinate: myLocation, streetAddress: "", userPosted: "")
+
 class ItemListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var ref:DatabaseReference!
     @IBOutlet weak var tableView: UITableView!
@@ -222,7 +226,7 @@ class ItemListViewController: UIViewController, UITableViewDataSource, UITableVi
         
         //tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         
-        //        currCell = saleItemsList[indexPath.row]
+        currCell = saleItemsList[indexPath.row]
         //        performSegue(withIdentifier: "itemInfoSegue", sender: row)
         
         let itemInfoVC = UIStoryboard(name:"Main", bundle: nil).instantiateViewController(withIdentifier: "itemInfo")
