@@ -4,7 +4,15 @@ Barry Chin (bxc2gn) and Christopher Yeung (cy4bv)
 
 Special Instructions to Run Mobile Application
 
-NOTE: the formal xCode project for our application is within the directory "FinalProjectiOS".  From the git clone of this project, please cd into that directory in order to run the application.  
+- As discussed in the proposal, we have designed our app for iPhone 8 on iOS.  For best user experience and design, please use the iPhone 8 simulator or an actual iPhone 8.  
+- The formal xCode project for our application is within the directory "FinalProjectiOS". From the git clone of this project, please cd into that directory in order to run the application.
+- To edit and delete items, go to the “My Profile Page”.  Under “Your Posted Items”, swiping on each item (from right to left) will show the edit and delete options which will work accordingly.
+- Depending on the size of the list, the initial loading of images from firebase may take a bit of time (possibly, at worst, a couple minutes, depending on how many images there are).  This is expected.  Since we are caching the images, loading images after this initial load, however, is very quick.
+- In order to start using the app, please sign up.  We have also provided a demo account with the following sign in credentials in case you wanted to test the app quickly and forgo the signup process.
+ Username: cy4bv@virginia.edu
+ Password: password
+- Camera does not work well in simulator, as well as location since the simulator is defaulted in San Francisco, whereas most items we post are in the UVA area.  
+- A good starting point to see items is to move to Jefferson Park Avenue, Charlottesville, VA, since the majority of our test items were placed around there.  
 
 Final Project Milestone Summary 
 
