@@ -402,7 +402,7 @@
             </objects>
             <point key="canvasLocation" x="4309.6000000000004" y="-398.05097451274366"/>
         </scene>
-        <!--Item Info View Controller-->
+        <!--Item List-->
         <scene sceneID="KS7-Qv-JNd">
             <objects>
                 <viewController storyboardIdentifier="itemInfo" id="NsV-Ap-4Ux" customClass="itemInfoViewController" customModule="FinalProjectiOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -452,29 +452,31 @@
                                 <rect key="frame" x="67" y="344" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ToC-ox-a3r">
-                                <rect key="frame" x="67" y="537" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ToC-ox-a3r">
+                                <rect key="frame" x="67" y="527" width="54" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Button" image="call"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6C-ZN-uWX">
-                                <rect key="frame" x="164" y="537" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6C-ZN-uWX">
+                                <rect key="frame" x="159" y="527" width="56" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Button" image="email"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NlN-n5-YTP">
-                                <rect key="frame" x="261" y="537" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NlN-n5-YTP">
+                                <rect key="frame" x="255" y="519" width="52" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Button" image="text"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="yMT-5S-q9i"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item List" image="icons8-menu-30" id="7ga-O7-Xn3"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yus-zw-FbB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5238" y="-385"/>
+            <point key="canvasLocation" x="5237.6000000000004" y="-385.45727136431788"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="aVh-o9-ltw">
@@ -1164,9 +1166,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="call" width="50" height="50"/>
+        <image name="email" width="50" height="50"/>
         <image name="icons8-add-new-30" width="30" height="30"/>
         <image name="icons8-menu-30" width="30" height="30"/>
         <image name="icons8-user-30" width="30" height="30"/>
         <image name="icons8-waypoint-map-30" width="30" height="30"/>
+        <image name="text" width="50" height="50"/>
     </resources>
 </document>
