@@ -14,8 +14,16 @@ class LandingScreenViewController: UIViewController {
     @IBOutlet weak var UsernameTextField: UITextField!
     @IBOutlet weak var PasswordTextField: UITextField!
     
+    @IBOutlet weak var loginButton: UIButton!
+    
+    @IBOutlet weak var signUpButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        //round corners of buttons
+        loginButton.layer.cornerRadius = 10;
+        loginButton.clipsToBounds = true;
+        signUpButton.layer.cornerRadius = 10;
+        signUpButton.clipsToBounds = true;
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTapAway)))
 
 
