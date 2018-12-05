@@ -19,6 +19,9 @@ class itemInfoViewController: UIViewController, MFMessageComposeViewControllerDe
         {NSLog("Message failed")}
         controller.dismiss(animated: true)
     }
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         print(currCell.itemName)
         super.viewDidLoad()
@@ -48,6 +51,14 @@ class itemInfoViewController: UIViewController, MFMessageComposeViewControllerDe
 displayMessageInterface()
      }
      @IBAction func emailAction(_ sender: Any) {
+        let picker = MFMailComposeViewController()
+        picker.mailComposeDelegate = self
+        picker.setSubject("Interested in " + currCell.itemName)
+        //put sellers email
+        picker.setToRecipients(["barryxchin@gmail.com"])
+        picker.setMessageBody("", isHTML: true)
+        
+        present(picker, animated: true, completion: nil)
      }
      @IBAction func phoneAction(_ sender: Any) {
         //Enter sellers number here
