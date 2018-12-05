@@ -9,8 +9,11 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
+import MapKit
+import SDWebImage
 
-class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
+class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource{
 
     
     
@@ -36,7 +39,7 @@ class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     var ref:DatabaseReference!
     
-    var saleItemsList: [saleItem] = []
+    var profileItemsList: [saleItem] = []
 
     @IBOutlet weak var profileTable: UITableView!
     
@@ -52,13 +55,13 @@ class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         let contactPicker = UIPickerView()
         contactMethodTextField.inputView = contactPicker
         contactPicker.delegate=self
-        //profileTable.delegate = self
-        //profileTable.dataSource = self
+        profileTable.delegate = self
+        profileTable.dataSource = self
         
         //don't allow editing of password text field, they must go to change password screen to change password
         passwordTextField.isUserInteractionEnabled = false
         passwordTextField.backgroundColor = UIColor.lightGray
-        
+        createInitialArray()
         //start alert to load data
         let loadingAlert = UIAlertController(title: nil, message: "Loading Your Profile...", preferredStyle: .alert)
         
@@ -102,17 +105,17 @@ class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid).child("UserItemsList")
         ref.observe(.value, with: { snapshot in
             
-            var saleItemsTemp: [saleItem] = []
+            var profileItemsTemp: [saleItem] = []
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot,
                     let item = saleItem(from: snapshot) {
                     print(item.itemPrice)
                     print(item.itemName)
-                    saleItemsTemp.append(item)
+                    profileItemsTemp.append(item)
                 }
             }
-            self.saleItemsList = saleItemsTemp
-            print("THIS IS TEMP ARR", saleItemsTemp)
+            self.profileItemsList = profileItemsTemp
+            print("THIS IS TEMP ARR", profileItemsTemp)
             self.profileTable.reloadData()
         })
     }
@@ -157,13 +160,24 @@ class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         }
     }
     
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        <#code#>
-//    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return profileItemsList.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let profileItem = profileItemsList[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! myProfileCell
+        cell.profileLable.text = profileItem.itemName
+        
+        cell.profileItemImage.sd_setImage(with: URL(string: profileItem.downloadURL!), placeholderImage: UIImage(named: "placeholder"))
+
+        //cell.setItemDetails(saleItem: saleItem)
+        
+        
+        //used external library called SDwebimage to cache images asynchronously
+        
+        return cell
+    }
     
 
     /*

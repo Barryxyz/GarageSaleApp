@@ -537,7 +537,6 @@
         <!--My Profile-->
         <scene sceneID="wp6-dx-tki">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yUf-Rl-eHT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController navigationBarHidden="YES" id="hFS-VX-KDY" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="My Profile" image="icons8-user-30" id="Gcf-3P-QN1"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kzZ-sw-3du">
@@ -547,6 +546,7 @@
                         <segue destination="Av4-gW-Ab1" kind="relationship" relationship="rootViewController" id="ded-xO-K6v"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yUf-Rl-eHT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3518" y="309"/>
         </scene>
@@ -682,7 +682,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="90" id="yRX-JG-xm8" customClass="myProfileCell" customModule="FinalProjectiOS" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileCell" rowHeight="90" id="yRX-JG-xm8" customClass="myProfileCell" customModule="FinalProjectiOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yRX-JG-xm8" id="Qck-Nd-FKa">
