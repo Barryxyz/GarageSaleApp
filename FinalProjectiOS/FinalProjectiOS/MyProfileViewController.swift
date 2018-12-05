@@ -12,6 +12,16 @@ import FirebaseDatabase
 import FirebaseStorage
 import MapKit
 import SDWebImage
+/***************************************************************************************
+ *  REFERENCES
+ *  Title: SDWebImage
+ *  Authors: Konstantinos K., Bogdan Poplauschi, Chester Liu, DreamPiggy, Wu Zhong
+ *  Date: 12/4/2018
+ *  Availability: https://github.com/SDWebImage/SDWebImage
+ *  Purpose: Used SDWebImage library which is an asynchronous cache for loading images from firebase (actually directly recommended by firebase
+ itself (link here: https://firebase.google.com/docs/storage/ios/download-files#downloading_images_with_firebaseui).  This was used for rounding out our cell image feature.  We had the images but had to figure out a way to manage this asynchronous process.  SDWebImage is helpful since it asynchronously loads images from firebase and caches them.  Actually recommended by firebase themselves as good solution for this asynchronous caching problem.
+ *
+ ***************************************************************************************/
 
 class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource{
 
