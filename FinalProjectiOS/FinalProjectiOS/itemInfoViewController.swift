@@ -67,7 +67,7 @@ class itemInfoViewController: UIViewController, MFMessageComposeViewControllerDe
 //        loadingAlert.view.addSubview(loadingIndicator)
 //        present(loadingAlert, animated: true, completion: nil)
         
-        ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
+        ref = Database.database().reference().child("Users").child(currCell.userPosted)
         ref.observe(.value, with: { snapshot in
             let snapshotValue = snapshot.value as! NSDictionary
             let contactMethod = snapshotValue["contactMethod"]
@@ -137,7 +137,7 @@ class itemInfoViewController: UIViewController, MFMessageComposeViewControllerDe
             //not all devices are configured for email
             print("THIS IS THE SELLER EMAIL", sellerInfoDict["sellerEmail"]!)
 
-            let alertController = UIAlertController(title: "Compose Email Error", message: "Your device is not configured to send email with this app.  Please use the other two options (call or text message) to contact seller, or send an email to " + sellerInfoDict["sellerEmail"]!, preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Compose Email Error", message: "Your device is not configured to send email with this app.  Please use the other two options (call or text message) to contact seller, or send an email manually to " + sellerInfoDict["sellerEmail"]! + ".", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
