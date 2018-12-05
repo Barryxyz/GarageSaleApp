@@ -23,6 +23,7 @@
 		26F2A90221B1DF3F0058621F /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F2A90121B1DF3F0058621F /* ItemListViewController.swift */; };
 		26F2A90421B1F2270058621F /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F2A90321B1F2270058621F /* ItemCell.swift */; };
 		26F2A90621B394AB0058621F /* saleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F2A90521B394AB0058621F /* saleItem.swift */; };
+		26FF93BE21B76A4200CAE444 /* myProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FF93BD21B76A4200CAE444 /* myProfileCell.swift */; };
 		9F2463D2219FB844002A180F /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2463D1219FB844002A180F /* mapViewController.swift */; };
 		9F7AFB5721B652DF00FE3558 /* ArtworkViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7AFB5621B652DF00FE3558 /* ArtworkViews.swift */; };
 		9FD1A60721B3998F00056A0E /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD1A60621B3998F00056A0E /* Artwork.swift */; };
@@ -51,6 +52,7 @@
 		26F2A90121B1DF3F0058621F /* ItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewController.swift; sourceTree = "<group>"; };
 		26F2A90321B1F2270058621F /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		26F2A90521B394AB0058621F /* saleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saleItem.swift; sourceTree = "<group>"; };
+		26FF93BD21B76A4200CAE444 /* myProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myProfileCell.swift; sourceTree = "<group>"; };
 		337B2501691A89701376615E /* Pods_FinalProjectiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinalProjectiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F2463D1219FB844002A180F /* mapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
 		9F7AFB5621B652DF00FE3558 /* ArtworkViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkViews.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				26F2A8FD21AB4DFD0058621F /* AddItemViewControllerImages.swift */,
 				26F2A8FF21AB50620058621F /* AddItemViewControllerLocation.swift */,
 				26A6AEA9219E0F82009157D6 /* PasswordResetViewController.swift */,
+				26FF93BD21B76A4200CAE444 /* myProfileCell.swift */,
 				2600B27A219DFCD000B6A55B /* MyProfileViewController.swift */,
 				9F2463D1219FB844002A180F /* mapViewController.swift */,
 				26B38803219DE371000F176F /* tabBarController.swift */,
@@ -298,6 +301,7 @@
 				9FE5A76421B4CF5B00202B69 /* locationPicker.swift in Sources */,
 				2600B27B219DFCD000B6A55B /* MyProfileViewController.swift in Sources */,
 				26F2A90021AB50620058621F /* AddItemViewControllerLocation.swift in Sources */,
+				26FF93BE21B76A4200CAE444 /* myProfileCell.swift in Sources */,
 				26A6AEAA219E0F82009157D6 /* PasswordResetViewController.swift in Sources */,
 				9FE5A76621B4D38A00202B69 /* ItemOnSale.swift in Sources */,
 				26F2A90221B1DF3F0058621F /* ItemListViewController.swift in Sources */,

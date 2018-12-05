@@ -10,7 +10,9 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
+
+    
     
     //manages the pickerView for contactMethodTextField ("best contact method")
     
@@ -33,7 +35,11 @@ class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     var ref:DatabaseReference!
+    
+    var saleItemsList: [saleItem] = []
 
+    @IBOutlet weak var profileTable: UITableView!
+    
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var contactMethodTextField: UITextField!
@@ -46,6 +52,8 @@ class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         let contactPicker = UIPickerView()
         contactMethodTextField.inputView = contactPicker
         contactPicker.delegate=self
+        //profileTable.delegate = self
+        //profileTable.dataSource = self
         
         //don't allow editing of password text field, they must go to change password screen to change password
         passwordTextField.isUserInteractionEnabled = false
@@ -89,6 +97,26 @@ class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         // Do any additional setup after loading the view.
     }
     
+    func createInitialArray(){
+        //        //create saleItems
+        ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid).child("UserItemsList")
+        ref.observe(.value, with: { snapshot in
+            
+            var saleItemsTemp: [saleItem] = []
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let item = saleItem(from: snapshot) {
+                    print(item.itemPrice)
+                    print(item.itemName)
+                    saleItemsTemp.append(item)
+                }
+            }
+            self.saleItemsList = saleItemsTemp
+            print("THIS IS TEMP ARR", saleItemsTemp)
+            self.profileTable.reloadData()
+        })
+    }
+    
     @IBAction func saveChangesAction(_ sender: Any) {
         //if any of the fields are empty, do NOT let the user save their input to the database
         if (firstNameTextField.text!.isEmpty || lastNameTextField.text!.isEmpty || contactMethodTextField.text!.isEmpty || emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty || phoneNumberTextField.text!.isEmpty){
@@ -128,6 +156,14 @@ class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             self.present(alertController, animated: true, completion: nil)
         }
     }
+    
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        <#code#>
+//    }
     
 
     /*

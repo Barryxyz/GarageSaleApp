@@ -8,7 +8,7 @@
 /***************************************************************************************
  *  REFERENCES
  *  Title: SDWebImage
- *  Author:Konstantinos K., Bogdan Poplauschi, Chester Liu, DreamPiggy, Wu Zhong
+ *  Authors: Konstantinos K., Bogdan Poplauschi, Chester Liu, DreamPiggy, Wu Zhong
  *  Date: 12/4/2018
  *  Availability: https://github.com/SDWebImage/SDWebImage
  *  Purpose: Used SDWebImage library which is an asynchronous cache for loading images from firebase (actually directly recommended by firebase
@@ -27,10 +27,7 @@ class ItemListViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var tableView: UITableView!
     var isFinished = false
     //var loadingAlert: UIAlertController? = nil
-//    var tableData:[AnyObject]!
-//    var task: URLSessionDownloadTask!
-//    var session: URLSession!
-//    var cache:NSCache<AnyObject, AnyObject>!
+
 
     
     var saleItemsList: [saleItem] = []
@@ -42,6 +39,8 @@ class ItemListViewController: UIViewController, UITableViewDataSource, UITableVi
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+    
         
 //        let loadingAlert = UIAlertController(title: nil, message: "Retrieving Image...", preferredStyle: .alert)
 //
@@ -92,6 +91,108 @@ class ItemListViewController: UIViewController, UITableViewDataSource, UITableVi
 //        }
     }
     
+    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBAction func onSegmentedControlChange(_ sender: Any) {
+        if (segmentedControl.selectedSegmentIndex == 0){
+            ref = Database.database().reference(withPath: "Items")
+            ref.observe(.value, with: { snapshot in
+                
+                var saleItemsTemp: [saleItem] = []
+                
+                for child in snapshot.children {
+                    if let snapshot = child as? DataSnapshot,
+                        let item = saleItem(from: snapshot) {
+                        saleItemsTemp.append(item)
+                    }
+                }
+                self.saleItemsList = saleItemsTemp
+                print("THIS IS TEMP ARR", saleItemsTemp)
+                self.tableView.reloadData()
+            })
+        }
+        //means we are on furniture
+        else if (segmentedControl.selectedSegmentIndex == 1){
+            ref = Database.database().reference(withPath: "Items")
+            ref.observe(.value, with: { snapshot in
+                
+                var saleItemsTemp: [saleItem] = []
+                
+                for child in snapshot.children {
+                    if let snapshot = child as? DataSnapshot,
+                        let item = saleItem(from: snapshot) {
+                        if (item.itemCategory == "Furniture"){
+                            saleItemsTemp.append(item)
+                        }
+                    }
+                }
+                self.saleItemsList = saleItemsTemp
+                print("THIS IS TEMP ARR", saleItemsTemp)
+                self.tableView.reloadData()
+            })
+        }
+        //means we are on school
+        else if (segmentedControl.selectedSegmentIndex == 2){
+            ref = Database.database().reference(withPath: "Items")
+            ref.observe(.value, with: { snapshot in
+                
+                var saleItemsTemp: [saleItem] = []
+                
+                for child in snapshot.children {
+                    if let snapshot = child as? DataSnapshot,
+                        let item = saleItem(from: snapshot) {
+                        if (item.itemCategory == "School"){
+                            saleItemsTemp.append(item)
+                        }
+                    }
+                }
+                self.saleItemsList = saleItemsTemp
+                print("THIS IS TEMP ARR", saleItemsTemp)
+                self.tableView.reloadData()
+            })
+        }
+        //means we are on clothes
+        else if (segmentedControl.selectedSegmentIndex == 3){
+            ref = Database.database().reference(withPath: "Items")
+            ref.observe(.value, with: { snapshot in
+                
+                var saleItemsTemp: [saleItem] = []
+                
+                for child in snapshot.children {
+                    if let snapshot = child as? DataSnapshot,
+                        let item = saleItem(from: snapshot) {
+                        if (item.itemCategory == "Clothes"){
+                            saleItemsTemp.append(item)
+                        }
+                    }
+                }
+                self.saleItemsList = saleItemsTemp
+                print("THIS IS TEMP ARR", saleItemsTemp)
+                self.tableView.reloadData()
+            })
+        }
+        //means we are on other
+        else{
+            ref = Database.database().reference(withPath: "Items")
+            ref.observe(.value, with: { snapshot in
+                
+                var saleItemsTemp: [saleItem] = []
+                
+                for child in snapshot.children {
+                    if let snapshot = child as? DataSnapshot,
+                        let item = saleItem(from: snapshot) {
+                        if (item.itemCategory == "Other"){
+                            saleItemsTemp.append(item)
+                        }
+                    }
+                }
+                self.saleItemsList = saleItemsTemp
+                print("THIS IS TEMP ARR", saleItemsTemp)
+                self.tableView.reloadData()
+            })
+        }
+    }
+    
     func createInitialArray(){
 //        //create saleItems
         ref = Database.database().reference(withPath: "Items")
@@ -117,15 +218,6 @@ class ItemListViewController: UIViewController, UITableViewDataSource, UITableVi
         return saleItemsList.count
     }
     
-    func BG(_ block: @escaping ()->Void) {
-        DispatchQueue.global(qos: .default).async(execute: block)
-    }
-    
-    func UI(_ block: @escaping ()->Void) {
-        DispatchQueue.main.async(execute: block)
-    }
-    
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let saleItem = saleItemsList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
