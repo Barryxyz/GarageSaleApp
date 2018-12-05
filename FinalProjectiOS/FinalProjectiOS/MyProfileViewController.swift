@@ -24,9 +24,9 @@ import SDWebImage
  ***************************************************************************************/
 
 
-var myLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
+var myLocation2: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
 
-var currProfileItem:saleItem = saleItem(downloadURL: "https://", imageAbsoluteURL: "gs://", itemCategory: "", itemDescription: "", itemName: "", itemPrice: "", coordinate: myLocation, streetAddress: "", userPosted: "")
+var currProfileItem:saleItem = saleItem(downloadURL: "https://", imageAbsoluteURL: "gs://", itemCategory: "", itemDescription: "", itemName: "", itemPrice: "", coordinate: myLocation2, streetAddress: "", userPosted: "")
 
 
 class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource{
