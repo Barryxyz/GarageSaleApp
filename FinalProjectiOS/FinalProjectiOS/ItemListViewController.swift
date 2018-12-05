@@ -131,7 +131,6 @@ class ItemListViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
         //cell.setItemDetails(saleItem: saleItem)
         
-        cell.cellSeller.text = saleItem.userPosted
         cell.cellName.text = saleItem.itemName
         cell.cellPrice.text = saleItem.itemPrice
         

@@ -17,7 +17,6 @@ class ItemCell: UITableViewCell {
 
     
     @IBOutlet weak var cellImage: UIImageView!
-    @IBOutlet weak var cellSeller: UILabel!
     @IBOutlet weak var cellName: UILabel!
     @IBOutlet weak var cellPrice: UILabel!
     

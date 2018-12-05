@@ -165,10 +165,10 @@ class AddItemViewControllerLocation: UIViewController, CLLocationManagerDelegate
     override func viewDidLoad() {
         
         //preset the values to what we have in the dictionary for the currentItem
-        streetAddressTextField.text = currItemDict["streetAddr"]
-        cityTextField.text = currItemDict["city"]
-        stateTextField.text = currItemDict["state"]
-        zipCodeTextField.text = currItemDict["zipCode"]
+//        streetAddressTextField.text = currItemDict["streetAddr"]
+//        cityTextField.text = currItemDict["city"]
+//        stateTextField.text = currItemDict["state"]
+//        zipCodeTextField.text = currItemDict["zipCode"]
         
         //contact pickerView stuff
         let contactPicker = UIPickerView()
