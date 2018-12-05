@@ -23,6 +23,12 @@ import SDWebImage
  *
  ***************************************************************************************/
 
+
+var myLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
+
+var currProfileItem:saleItem = saleItem(downloadURL: "https://", imageAbsoluteURL: "gs://", itemCategory: "", itemDescription: "", itemName: "", itemPrice: "", coordinate: myLocation, streetAddress: "", userPosted: "")
+
+
 class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource{
 
     
@@ -48,6 +54,8 @@ class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     var ref:DatabaseReference!
+    var ref2:DatabaseReference!
+
     
     var profileItemsList: [saleItem] = []
 
@@ -178,6 +186,7 @@ class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         let profileItem = profileItemsList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! myProfileCell
         cell.profileLable.text = profileItem.itemName
+        cell.priceLabel.text = profileItem.itemPrice
         
         cell.profileItemImage.sd_setImage(with: URL(string: profileItem.downloadURL!), placeholderImage: UIImage(named: "placeholder"))
 
@@ -189,6 +198,28 @@ class MyProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         return cell
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+            currProfileItem = self.profileItemsList[indexPath.row]
+            self.ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid).child("UserItemsList").child(currProfileItem.itemName)
+            //delete value in user list
+            self.ref.removeValue()
+            self.ref2 = Database.database().reference().child("Items").child(currProfileItem.itemName + Auth.auth().currentUser!.uid)
+            //delete value in overall items list
+            self.ref2.removeValue()
+        }
+        delete.backgroundColor = .red
+        
+        let edit = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
+            currProfileItem = self.profileItemsList[indexPath.row]
+            let itemLocationVC = UIStoryboard(name:"Main", bundle: nil).instantiateViewController(withIdentifier: "saleItemEditVC")
+            self.navigationController?.pushViewController(itemLocationVC, animated: true)
+            //self.performSegue(withIdentifier: "EditItem", sender: nil)
+        }
+        edit.backgroundColor = .blue
+        
+        return [delete, edit]
+    }
 
     /*
     // MARK: - Navigation

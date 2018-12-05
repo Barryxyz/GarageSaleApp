@@ -12,14 +12,8 @@ class myProfileCell: UITableViewCell {
 
     @IBOutlet weak var profileItemImage: UIImageView!
     @IBOutlet weak var profileLable: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     
-    @IBAction func profileEdit(_ sender: Any) {
-        
-    }
-    
-    @IBAction func profileDelete(_ sender: Any) {
-        
-    }
     
     
     //    override func awakeFromNib() {

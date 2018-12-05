@@ -24,6 +24,7 @@
 		26F2A90421B1F2270058621F /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F2A90321B1F2270058621F /* ItemCell.swift */; };
 		26F2A90621B394AB0058621F /* saleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F2A90521B394AB0058621F /* saleItem.swift */; };
 		26FF93BE21B76A4200CAE444 /* myProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FF93BD21B76A4200CAE444 /* myProfileCell.swift */; };
+		26FF93C021B78B7D00CAE444 /* saleItemEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FF93BF21B78B7D00CAE444 /* saleItemEditVC.swift */; };
 		9F2463D2219FB844002A180F /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2463D1219FB844002A180F /* mapViewController.swift */; };
 		9F7AFB5721B652DF00FE3558 /* ArtworkViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7AFB5621B652DF00FE3558 /* ArtworkViews.swift */; };
 		9FD1A60721B3998F00056A0E /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD1A60621B3998F00056A0E /* Artwork.swift */; };
@@ -53,6 +54,7 @@
 		26F2A90321B1F2270058621F /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		26F2A90521B394AB0058621F /* saleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saleItem.swift; sourceTree = "<group>"; };
 		26FF93BD21B76A4200CAE444 /* myProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myProfileCell.swift; sourceTree = "<group>"; };
+		26FF93BF21B78B7D00CAE444 /* saleItemEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saleItemEditVC.swift; sourceTree = "<group>"; };
 		337B2501691A89701376615E /* Pods_FinalProjectiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinalProjectiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F2463D1219FB844002A180F /* mapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
 		9F7AFB5621B652DF00FE3558 /* ArtworkViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkViews.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				26A6AEA9219E0F82009157D6 /* PasswordResetViewController.swift */,
 				26FF93BD21B76A4200CAE444 /* myProfileCell.swift */,
 				2600B27A219DFCD000B6A55B /* MyProfileViewController.swift */,
+				26FF93BF21B78B7D00CAE444 /* saleItemEditVC.swift */,
 				9F2463D1219FB844002A180F /* mapViewController.swift */,
 				26B38803219DE371000F176F /* tabBarController.swift */,
 				26772E12219B96E100F5EAF8 /* Assets.xcassets */,
@@ -308,6 +311,7 @@
 				26772E22219BA1FF00F5EAF8 /* LandingScreenViewController.swift in Sources */,
 				26B38804219DE371000F176F /* tabBarController.swift in Sources */,
 				9F2463D2219FB844002A180F /* mapViewController.swift in Sources */,
+				26FF93C021B78B7D00CAE444 /* saleItemEditVC.swift in Sources */,
 				26F2A90421B1F2270058621F /* ItemCell.swift in Sources */,
 				26218C1521A3A47300D6FBC6 /* AddItemViewController.swift in Sources */,
 				9F7AFB5721B652DF00FE3558 /* ArtworkViews.swift in Sources */,

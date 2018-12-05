@@ -94,6 +94,12 @@ class AddItemViewController: UIViewController,  UIPickerViewDelegate, UIPickerVi
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
         }
+        else if (priceTextField.text!.contains("$")){
+            let alertController = UIAlertController(title: "Post Item Error", message: "Please enter only numbers in the price field, (e.g. 25, not $25).", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
         else{
             //allow users to post items with the same ITEM NAME but the same user may NOT post the same item name twice
 //            ref = Database.database().reference().child("Items").child(itemNameTextField.text!)
