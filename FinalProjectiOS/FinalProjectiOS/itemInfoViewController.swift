@@ -20,12 +20,14 @@ class itemInfoViewController: UIViewController, MFMessageComposeViewControllerDe
         controller.dismiss(animated: true)
     }
     @IBOutlet weak var itemName: UILabel!
+    @IBOutlet weak var itemDescription: UILabel!
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {
         print(currCell.itemName)
         itemName.text = currCell.itemPrice + ": " + currCell.itemName
+        itemDescription.text = currCell.itemDescription
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
