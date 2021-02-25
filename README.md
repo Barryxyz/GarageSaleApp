@@ -1,4 +1,5 @@
 # final-project-final-ios-chinyeung
+iOS app that allows users to post items onto a map and allows users to find those items
 
 Barry Chin (bxc2gn) and Christopher Yeung (cy4bv)
 
